@@ -104,7 +104,8 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
       res.render('games/show', {
         game: game,
         users: users,
-        bettype: bettype
+        bettype: bettype,
+        userBets: userBets
       })
     } else if(game.started == true & game.completed == false) {
       res.render('games/started', {
