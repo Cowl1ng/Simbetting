@@ -1,0 +1,13 @@
+<%- include('_headers.ejs') %>
+<%- include('_messages') %>
+<h2>Enter results</h2>
+<form action="/fantasy/<%= fantasygame.id %>/completed?_method=PUT" method="POST">
+  <label><%= fantasygame.team_a %> </label>
+  <input type="text" name="team_a_points" value="<%= fantasygame.team_a_points %>">
+  <div>
+    <label><%= fantasygame.team_b %></label>
+    <input type="text" name="team_b_points" value="<%= fantasygame.team_b_points %>">
+
+  <a href="/fantasy/">Cancel</a>
+  <button type="submit">Update</button>
+</form>

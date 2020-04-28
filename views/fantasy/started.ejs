@@ -1,0 +1,10 @@
+<%- include('_headers_public.ejs') %>
+<h2> <%= fantasygame.team_a %> vs <%= fantasygame.team_b %></h2>
+<p class="lead mb-3"><%= fantasygame.team_a %> => Odds: <%= fantasygame.odds_a %></p>
+  <p class="lead mb-3"><%= fantasygame.team_b %> =>  Odds: <%= fantasygame.odds_b %></p>
+  <p class="lead mb-3">Draw Odds: <%= fantasygame.odds_draw %></p>
+  <h2 class="mt-4">Your bets</h2>
+  <% userBets.forEach(userBet => {  %>
+    <p class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %>. If it wins you will win: £ <%= userBet.winnings %></p> 
+  <% }) %>
+  <%- include('_messages') %>

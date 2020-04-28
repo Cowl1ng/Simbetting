@@ -1,0 +1,17 @@
+<%- include('_headers.ejs') %>
+<h2>Edit Game</h2>
+<form action="/games/<%= game.id %>?_method=PUT" method="POST">
+  <%- include('_form_fields') %>
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-primary">
+      Match Started
+    </label>
+    <input type="checkbox" name="started" value = "true"> 
+    <label class="btn btn-primary">
+      Match completed
+    </label>
+    <input type="checkbox" name="completed" value = "true"> 
+  </div>
+  <a href="/games/">Cancel</a>
+  <button type="submit">Update</button>
+</form>

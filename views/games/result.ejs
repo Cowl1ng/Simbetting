@@ -1,0 +1,20 @@
+<%- include('_headers.ejs') %>
+<%- include('_messages') %>
+<h2>Enter results</h2>
+<form action="/games/<%= game.id %>/completed?_method=PUT" method="POST">
+  <label><%= game.team_a %> </label>
+  <input type="text" name="team_a_goals" value="<%= game.team_a_goals %>">
+  <div>
+    <label><%= game.team_b %></label>
+    <input type="text" name="team_b_goals" value="<%= game.team_b_goals %>">
+  <div>
+    <label>Yellow cards</label>
+    <input type="text" name="yellow_cards" value="<%= game.yellow_cards%>">
+  </div>
+  <div>
+  <label class="btn btn-primary">Red Card? (Tick if yes)</label>
+<input type="checkbox" name="completed" value = "true"> 
+</div>
+  <a href="/games/">Cancel</a>
+  <button type="submit">Update</button>
+</form>

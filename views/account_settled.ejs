@@ -1,0 +1,40 @@
+<%- include('./games/_headers_public.ejs') %>
+<div class="page-header">
+<h1 class="mt-4">Dashboard</h1>
+</div>
+<p class="lead mb-3">Welcome <%= name %></p>
+<p class="lead mb-3">Your balance is: <%= balance  %></p>
+<h2 class="mt-4">Your bets</h2>
+<div class="container" role="navigation">
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active; nav-link"><a href="/account">Open</a></li>
+    <li role="presentation" class="nav-link"><a href="/account/settledbets">Settled</a></li>
+  </ul>
+</nav>
+<br>
+<div>
+<% userBets.forEach(userBet => {  %>
+  <% if(userBet.settled == true) { %>
+  <% if(userBet.win == true) { %>
+    <h4>£ <%= userBet.stake %> bet on <%= userBet.type %></h4>
+    <h5 style="color:yellow;background-color:green">WON: £ <%= userBet.winnings%></h5>
+    <% } else { %>
+      <h4>£ <%= userBet.stake %> bet on <%= userBet.type %></h4>
+      <h5 style="color:yellow;background-color:red">LOST</h5>
+    <% }} %>  
+<% }) %>
+<h3>Fantasy Bets</h3>
+<% userFantasyBets.forEach(userFantasyBet => {  %>
+  <% if(userFantasyBet.settled == true) { %>
+  <% if(userFantasyBet.win == true) { %>
+    <h4>£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %></h4>
+    <h5 style="color:yellow;background-color:green">WON: £ <%= userFantasyBet.winnings %></h5>
+    <% } else { %>
+      <h4>£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %></h4>
+      <h5 style="color:yellow;background-color:red">LOST</h5>
+    <% }} %>  
+<% }) %>
+</div>
+<div>
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+</div>

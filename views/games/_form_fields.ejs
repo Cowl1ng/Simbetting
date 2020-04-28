@@ -1,0 +1,23 @@
+<!-- Starts with _ because it is partial file that isnt dsiplayed on server -->
+<label>Team A</label>
+<input type="text" name="team_a" value="<%= game.team_a %>">
+<label>Odds</label>
+<input type="text" name="odds_a" value="<%= game.odds_a %>">
+<div>
+  <label>Team B</label>
+  <input type="text" name="team_b" value="<%= game.team_b %>">
+  <label>Odds</label>
+  <input type="text" name="odds_b" value="<%= game.odds_b %>">
+</div>
+<div>
+  <label>Draw Odds</label>
+  <input type="text" name="odds_draw" value="<%= game.odds_draw %>">
+</div>
+<div>
+  <label>O/U goals</label>
+  <input type="text" name="ougoals" value="<%= game.ougoals %>">
+  <label>Over <%= game.ougoals %> goals odds</label>
+  <input type="text" name="odds_ogoals" value="<%= game.odds_ogoals %>">
+  <label>Under <%= game.ougoals %> goals Odds</label>
+  <input type="text" name="odds_ugoals" value="<%= game.odds_ugoals %>">
+</div>

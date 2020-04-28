@@ -1,0 +1,26 @@
+<%- include('_headers.ejs') %>
+<h2>Change game week</h2>
+<form action="/fantasy/new" method="POST">
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-primary">
+      Game Week
+    </label>
+    <select name="game_week" class="form-control">
+      <option label="Week 1" value="1">
+      <option label="Week 2" value="2">
+      <option label="Week 3" value="3">
+      <option label="Week 4" value="4">
+      <option label="Week 5" value="5">
+      <option label="Week 6" value="6">
+      <option label="Week 7" value="7">
+      <option label="Week 8" value="8">
+      <option label="Week 9" value="9">
+    </select>
+    <label class="btn btn-primary">
+      Week started
+    </label>
+    <input type="checkbox" name="started" value = "true"> 
+  </div>
+  <a href="/fantasy">Cancel</a>
+  <button type="submit">Update</button>
+</form>

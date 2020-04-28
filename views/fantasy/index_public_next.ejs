@@ -1,0 +1,22 @@
+<%- include('_headers_public.ejs') %>
+<%- include('_messages') %>
+<br>
+<h2>Games this week</h2>
+
+<div class="container" role="navigation">
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active; nav-link"><a href="/fantasy/list">This week</a></li>
+    <li role="presentation" class="nav-link"><a href="/fantasy/list/nextweek">Next week</a></li>
+  </ul>
+</nav>
+<div>
+
+ <% fantasygames.forEach(fantasygame => {  %>
+  <div id="container">
+    <a href="/fantasy/<%= fantasygame.id %>"><%= fantasygame.team_a %> vs <%= fantasygame.team_b %></a>
+  <p class="lead mb-3"><%= fantasygame.team_a %> to win: <%= fantasygame.odds_a %></p>
+  <p class="lead mb-3"><%= fantasygame.team_b %> to win: <%= fantasygame.odds_b %></p>
+  <p class="lead mb-3">Draw : <%= fantasygame.odds_draw %></p>
+  </div>
+ <% }) %>
+

@@ -1,0 +1,7 @@
+<%- include('_headers.ejs') %>
+<h2>New Game</h2>
+<form action="/fantasy" method="POST">
+  <%- include('_form_fields') %>
+  <a href="/fantasy">Cancel</a>
+  <button type="submit">Create</button>
+</form>

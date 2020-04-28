@@ -1,0 +1,15 @@
+<%- include('_headers_public.ejs') %>
+<div class="page-header">
+<h1 class="mt-4"><%= fantasygame.team_a %> vs <%= fantasygame.team_b %></h1>
+</div>
+<p class="lead mb-3"><%= fantasygame.team_a_points %> : <%= fantasygame.team_b_points %></p>
+<h2 class="mt-4">Your bets</h2>
+<% userBets.forEach(userBet => {  %>
+  <% if(userBet.win == true) { %>
+  <h4>£ <%= userBet.stake %> bet on <%= userBet.type %> won: £ <%= userBet.winnings %></h4>
+  <h5 style="color:yellow;background-color:green">WON</h5>
+  <% } else { %>
+    <h4>£ <%= userBet.stake %> bet on <%= userBet.type %> lost </h4>
+    <h5 style="color:yellow;background-color:red">LOST</h5>
+  <% } %>  
+<% }) %>
