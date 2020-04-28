@@ -45,6 +45,8 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
       odds = games.odds_ogoals
     } else if(req.body.bettype == "Under " + games.ougoals + " goals") {
       odds = games.odds_ugoals
+    } else if(req.body.bettype == "Red Card") {
+      odds = games.odds_rcard
     } else {console.log("Error getting odds")}
     winnings = odds * req.body.stake
     winnings = winnings.toFixed(2)
@@ -99,7 +101,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
-    var bettype = [game.team_a, game.team_b, "draw", "Over " + game.ougoals + " goals", "Under " + game.ougoals + " goals"]
+    var bettype = [game.team_a, game.team_b, "draw", "Over " + game.ougoals + " goals", "Under " + game.ougoals + " goals", "Red Card"]
     if(game.started == false & game.completed == false){ 
       res.render('games/show', {
         game: game,

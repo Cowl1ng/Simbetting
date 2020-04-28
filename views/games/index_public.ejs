@@ -9,12 +9,13 @@
 
 <% game_number = 1 %>
 <% games.forEach(game => {  %>
+  <%if(game.completed == true) {game.started = true} %>
   <div id="container">
     <a href="/games/<%= game.id %>">Game <%= game_number %></a>
   <p class="lead mb-3">Team A: <%= game.team_a %> , Odds: <%= game.odds_a %></p>
   <p class="lead mb-3">Team B: <%= game.team_b %> , Odds: <%= game.odds_b %></p>
   <p class="lead mb-3">Draw Odds: <%= game.odds_draw %></p>
-  <p class="lead mb-3">Over/Under: <%= game.ougoals %> goals => Over Odds: <%= game.odds_ogoals %> <br> Under Odds: <%= game.odds_ugoals %></p>
+  <p class="lead mb-3">Over/Under: <%= game.ougoals %> goals <br>Over Odds: <%= game.odds_ogoals %> , Under Odds: <%= game.odds_ugoals %></p>
   <p class="lead mb-3">Started: <%= game.started %></p>
   <p class="lead mb-3">Completed: <%= game.completed %></p>
   </div>

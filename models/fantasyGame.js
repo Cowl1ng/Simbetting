@@ -65,29 +65,32 @@ FantasyGameSchema.pre('remove', function(next) {
 })
 
 FantasyGameSchema.post('save', async function(next) {
-  FantasyBet.find({ game: this.id }) 
-  .then (bets => {
-    var bettype = [this.team_a + " to win", this.team_b + " to win", "draw"]
-    for (const bet of bets) {
-      console.log('Bet:')
-      console.log(bet)
-      if(this.completed == true) {
-        if(bet.type == bettype[0] & this.team_a_points > this.team_b_points) {
-          bet.win = true
-        } else if(bet.type == bettype[1] & this.team_b_points > this.team_a_points) {
-          bet.win = true
-        } else if(bet.type == bettype[2] & this.team_a_points == this.team_b_points) {
-          bet.win = true
-        } else { bet.win = false}
-        bet.settled = true
-          FantasyBet.findOneAndUpdate({ _id: bet.id} , { win: bet.win, settled: true})
-          .then(bet => console.log(bet))
-          .catch(err => console.log(err))
+  try{
+  User.find({}, async (error, users) => {
+  for (const user of users) {
+    winnings = 0
+    user.balance = user.preFbalance
+    await FantasyBet.find({ user: user.id }, (error, bets) => {
+      for (bet of bets) {
+        if (bet.settled == true & bet.win == true) {
+          winnings += bet.winnings - bet.stake
+        } else {
+          winnings -= bet.stake
+        }
+        user.balance += winnings
+        winnings = 0
+        user.balance = user.balance.toFixed(2)
       }
-    }
-  })
-  .catch(err => console.log(err))
+      User.findOneAndUpdate({ _id: user.id} , { balance: user.balance})
+      .catch(err => console.log(err))
+    })
+  }
 })
+  } catch(err) {
+    console.log(err)
+  }
+})
+
 
 const FantasyGame = mongoose.model('FantasyGame', FantasyGameSchema)
 module.exports = FantasyGame
