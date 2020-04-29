@@ -1,7 +1,66 @@
 <%- include('_headers.ejs') %>
-<h2>Players</h2>
-<% players.forEach(player => {  %>
-  <p class="lead mb-3">Name: <%= player.name %></p>
-  <p class="lead mb-3">Fantasy Team: <%= player.fantasy_team %></p>
-  <br>
+<h2>All Lineups</h2>
+<div class="row">
+  <div class="col-md-2">
+  <h4>Wedge</h4>
+  <% wedge.forEach(player => {  %>
+    <p> <%= player.name%> </p>
   <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Forbes</h4>
+  <% forbes.forEach(player => {  %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Tim</h4>
+  <% tim.forEach(player => {  %>
+      <p> <%= player.name%> </p>
+    <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Bowden</h4>
+    <% bow.forEach(player => {  %>
+      <p> <%= player.name%> </p>
+    <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Kite</h4>
+  <% kite.forEach(player => {  %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+  <h4>Stark</h4>
+  <% stark.forEach(player => {  %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Rog</h4>
+  <% rog.forEach(player => {  %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Coulman</h4>
+  <% coulman.forEach(player => {  %>
+      <p> <%= player.name%> </p>
+    <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Niall</h4>
+    <% niall.forEach(player => {  %>
+      <p> <%= player.name%> </p>
+    <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4>Cowling</h4>
+  <% luke.forEach(player => {  %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+</div>
+</div>

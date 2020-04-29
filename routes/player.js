@@ -24,9 +24,42 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 })
 
 router.get('/all_lineups', ensureAuthenticated, async (req, res) => {
+  let wedge = []
+  let forbes = []
+  let tim = []
+  let bow = []
+  let kite = []
+  let stark = []
+  let rog = []
+  let coulman = []
+  let niall = []
+  let luke = []
   try {
-    const players = await Player.find({playing: false})
-    res.render('./all_lineups', { players: players })
+    const players = await Player.find({playing: true}).sort({fantasy_team: 1})
+    for (const player of players){
+      if(player.fantasy_team == 'Wedge'){wedge.push(player)}
+      if(player.fantasy_team == 'Forbes'){forbes.push(player)}
+      if(player.fantasy_team == 'Tim'){tim.push(player)}
+      if(player.fantasy_team == 'Bow'){bow.push(player)}
+      if(player.fantasy_team == 'Kite'){kite.push(player)}
+      if(player.fantasy_team == 'Stark'){stark.push(player)}
+      if(player.fantasy_team == 'Rog'){rog.push(player)}
+      if(player.fantasy_team == 'Coulman'){coulman.push(player)}
+      if(player.fantasy_team == 'Niall'){niall.push(player)}
+      if(player.fantasy_team == 'Luke'){luke.push(player)}
+    }
+    res.render('./all_lineups', { 
+      wedge: wedge,
+      forbes: forbes,
+      tim: tim,
+      bow: bow,
+      kite: kite,
+      stark: stark,
+      rog: rog,
+      coulman: coulman,
+      niall: niall,
+      luke: luke
+     })
   } catch(err) {
     console.log(err)
 }

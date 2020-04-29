@@ -133,7 +133,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
       res.render('games/started', {
         game: game,
         users: users,
-        userBets: userBets
+        userBets: userBets,
       })
     } else {
 
