@@ -8,7 +8,7 @@
 <div class="container" role="navigation">
   <ul class="nav nav-pills">
     <li role="presentation" class="active; nav-link"><a href="/account">Open</a></li>
-    <li role="presentation" class="nav-link"><a href="/account/settledbets">Settled</a></li>
+    <li role="presentation" class="nav-link"><a href="/account/settled">Settled</a></li>
     <li role="presentation" class="nav-link"><a href="/account/leaderboard">Leaderboard</a></li>
   </ul>
 </nav>
@@ -20,7 +20,7 @@
     <h4>£ <%= userBet.stake %> bet on <%= userBet.type %></h4> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>
     <h5 style="color:yellow;background-color:green">WON: £ <%= userBet.winnings%></h5>
     <% } else { %>
-      <h4>£ <%= userBet.stake %> bet on <%= userBet.type %> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a></h4>
+      <h4>£ <%= userBet.stake %> bet on <%= userBet.type %></h4> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a></h4>
       <h5 style="color:yellow;background-color:red">LOST</h5>
     <% }} %>  
 <% }) %>

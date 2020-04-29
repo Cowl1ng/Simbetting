@@ -21,7 +21,7 @@
 <h3>Fantasy Bets</h3>
 <% userFantasyBets.forEach(userFantasyBet => {  %>
   <% if(userFantasyBet.settled == false) { %>
-  <p class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/games/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. If it wins you will win: £ <%= userFantasyBet.winnings %></p>
+  <p class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/fantasy/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. If it wins you will win: £ <%= userFantasyBet.winnings %></p>
   <% } %>
 <% }) %>
 

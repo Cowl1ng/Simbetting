@@ -84,10 +84,11 @@ gameSchema.pre('remove', function(next) {
 gameSchema.post('save', async function(next) {
   try {
   await Bet.find({ game: this.id }, (error, bets) => {
-    var bettype = [this.team_a + " to win", this.team_b + " to win", "draw", "Over " + this.ougoals + " goals", "Under " + this.ougoals + " goals", "Red Card", "MOTM"]
-    var check_MOTM = str.includes("MOTM")
-    var MOTM = str.includes(this.mvp)
+    var bettype = [this.team_a, this.team_b, "draw", "Over " + this.ougoals + " goals", "Under " + this.ougoals + " goals", "Red Card", "MOTM"]
+
     for (const bet of bets) {
+      var check_MOTM = bet.type.includes("MOTM")
+      var MOTM = bet.type.includes(this.mvp)
       if(this.completed == true) {
         if(bet.type == bettype[0] & this.team_a_goals > this.team_b_goals) {
           bet.win = true
@@ -105,7 +106,8 @@ gameSchema.post('save', async function(next) {
           bet.win = true
         } else { bet.win = false}
         bet.settled = true
-          Bet.findOneAndUpdate({ _id: bet.id} , { win: bet.win, settled: true})
+        Bet.findOneAndUpdate({ _id: bet.id} , { win: bet.win, settled: true})
+        .catch(err => console.log(err))
       }
     }
   })

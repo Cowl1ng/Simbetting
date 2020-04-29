@@ -23,7 +23,7 @@ const PlayerSchema = new mongoose.Schema({
   },
   playing: {
     type: Boolean,
-    default: false
+    default: true
   },
 })
 

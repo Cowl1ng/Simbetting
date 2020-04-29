@@ -10,6 +10,11 @@
   <div>
   <label class="btn btn-primary">Red Card? (Tick if yes)</label>
 <input type="checkbox" name="red_card" value = "true"> 
+<select class="form-control" name="motm">
+  <% for(var i=0; i < players.length; i++) { %>
+     <option value="<%= players[i].name %>" ><%= players[i].name %></option>
+  <% } %>
+</select>
 </div>
   <a href="/games/">Cancel</a>
   <button type="submit">Update</button>

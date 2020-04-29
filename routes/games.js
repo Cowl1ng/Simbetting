@@ -43,7 +43,9 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
       bet_type = req.body.motm + " MOTM"
       odds = player[0].mvp_odds
     } else {
-      bet_type = req.body.bet_type
+      console.log('Non MOTM')
+      console.log(req.body.bettype)
+      bet_type = req.body.bettype
       if(req.body.bettype == games.team_a ) {
         odds = games.odds_a
       } else if(req.body.bettype == games.team_b) {
@@ -163,7 +165,15 @@ router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
 router.get('/:id/result', ensureAuthenticated, async (req, res) => {
   try {
     const game = await Game.findById(req.params.id)
-    res.render('games/result', {game: game })
+    const players = await Player.find({ $or: [
+      { country: game.team_a},
+      { country: game.team_b}
+    ]})
+    res.render('games/result', {
+      game: game,
+      players: players
+
+    })
   } catch {
     res.redirect('/games')
   }
@@ -178,6 +188,7 @@ router.put('/:id/completed', ensureAuthenticated, async (req, res) => {
     game.team_b_goals = req.body.team_b_goals
     game.yellow_cards = req.body.yellow_cards
     game.red_card = req.body.red_card
+    game.mvp = req.body.motm
     if(req.body.red_card == null) {
       game.red_card = false
     }

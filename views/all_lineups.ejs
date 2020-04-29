@@ -1,0 +1,7 @@
+<%- include('_headers.ejs') %>
+<h2>Players</h2>
+<% players.forEach(player => {  %>
+  <p class="lead mb-3">Name: <%= player.name %></p>
+  <p class="lead mb-3">Fantasy Team: <%= player.fantasy_team %></p>
+  <br>
+  <% }) %>

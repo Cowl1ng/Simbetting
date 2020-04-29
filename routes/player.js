@@ -23,6 +23,15 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 }
 })
 
+router.get('/all_lineups', ensureAuthenticated, async (req, res) => {
+  try {
+    const players = await Player.find({playing: false})
+    res.render('./all_lineups', { players: players })
+  } catch(err) {
+    console.log(err)
+}
+})
+
 router.get('/lineup', ensureAuthenticated, async (req, res) => {
   let goalkeepers = []
   let defenders = []
