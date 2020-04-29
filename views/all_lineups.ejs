@@ -59,7 +59,12 @@
   </div>
   <div class="col-md-2">
   <h4>Cowling</h4>
-  <% luke.forEach(player => {  %>
+  <% cowling.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6>Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6>Vice Captain</h6>
+    <% } %>
     <p> <%= player.name%> </p>
   <% }) %>
 </div>

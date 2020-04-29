@@ -25,6 +25,14 @@ const PlayerSchema = new mongoose.Schema({
     type: Number,
     default: 11
   },
+  captain: {
+    type: Boolean,
+    default: false
+  },
+  vice_captain: {
+    type: Boolean,
+    default: false
+  },
   playing: {
     type: Boolean,
     default: true
