@@ -17,6 +17,10 @@ const PlayerSchema = new mongoose.Schema({
   position: {
     type: String,
   },
+  mvp_odds: {
+    type: Number,
+    default: 15
+  },
   playing: {
     type: Boolean,
     default: false

@@ -4,6 +4,7 @@ const Game = require('../models/game')
 const { ensureAuthenticated } = require('../config/auth')
 const Bet = require('../models/bet')
 const User = require('../models/User')
+const Player = require('../models/player')
 
 
 // All games route
@@ -32,26 +33,38 @@ router.get('/list', ensureAuthenticated, async (req, res) => {
 router.post('/list', ensureAuthenticated, async (req, res) =>{
   console.log('Submitting new bet')
   var odds = 0
+  let bet_type = ''
   try {
     const users = await User.findById(req.user.id)
     const games = await Game.findById(req.body.gameid)
-    if(req.body.bettype == games.team_a ) {
-      odds = games.odds_a
-    } else if(req.body.bettype == games.team_b) {
-      odds = games.odds_b
-    } else if(req.body.bettype == "draw") {
-      odds = games.odds_draw
-    } else if(req.body.bettype == "Over " + games.ougoals + " goals") {
-      odds = games.odds_ogoals
-    } else if(req.body.bettype == "Under " + games.ougoals + " goals") {
-      odds = games.odds_ugoals
-    } else if(req.body.bettype == "Red Card") {
-      odds = games.odds_rcard
-    } else {console.log("Error getting odds")}
+    await Player.find({name: req.body.motm})
+    .then(player => {
+    if(req.body.bettype == undefined) {
+      bet_type = req.body.motm + " MOTM"
+      odds = player[0].mvp_odds
+    } else {
+      bet_type = req.body.bet_type
+      if(req.body.bettype == games.team_a ) {
+        odds = games.odds_a
+      } else if(req.body.bettype == games.team_b) {
+        odds = games.odds_b
+      } else if(req.body.bettype == "draw") {
+        odds = games.odds_draw
+      } else if(req.body.bettype == "Over " + games.ougoals + " goals") {
+        odds = games.odds_ogoals
+      } else if(req.body.bettype == "Under " + games.ougoals + " goals") {
+        odds = games.odds_ugoals
+      } else if(req.body.bettype == "Red Card") {
+        odds = games.odds_rcard
+      } else {console.log("Error getting odds")}
+  }})
+    console.log('Odds & Bet_type')
+    console.log(odds)
+    console.log(bet_type)
     winnings = odds * req.body.stake
     winnings = winnings.toFixed(2)
     const newBet = new Bet ({
-      type: req.body.bettype,
+      type: bet_type,
       stake: req.body.stake,
       winnings: winnings,
       user: users.id,
@@ -101,14 +114,18 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
-    console.log(userBets)
+    const players = await Player.find({ $or: [
+      { country: game.team_a},
+      { country: game.team_b}
+    ]}).sort({mvp_odds: 1})
     var bettype = [game.team_a, game.team_b, "draw", "Over " + game.ougoals + " goals", "Under " + game.ougoals + " goals", "Red Card"]
     if(game.started == false & game.completed == false){ 
       res.render('games/show', {
         game: game,
         users: users,
         bettype: bettype,
-        userBets: userBets
+        userBets: userBets,
+        players: players
       })
     } else if(game.started == true & game.completed == false) {
       res.render('games/started', {
