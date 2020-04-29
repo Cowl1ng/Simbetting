@@ -144,6 +144,7 @@ router.post('/', ensureAuthenticated, async (req, res) =>{
 
 router.post('/lineup', ensureAuthenticated, async (req, res) =>{
   try{
+    await Player.updateMany({fantasy_team: req.user.fantasy_team}, {$set: {playing: false}})
     await Player.findOneAndUpdate({name: req.body.goalkeeper}, {playing: true})
     await Player.findOneAndUpdate({name: req.body.player_1}, {playing: true})
     await Player.findOneAndUpdate({name: req.body.player_2}, {playing: true})

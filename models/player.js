@@ -21,6 +21,10 @@ const PlayerSchema = new mongoose.Schema({
     type: Number,
     default: 15
   },
+  fgoal_odds: {
+    type: Number,
+    default: 11
+  },
   playing: {
     type: Boolean,
     default: true

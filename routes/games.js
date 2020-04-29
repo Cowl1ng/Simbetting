@@ -37,11 +37,18 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
   try {
     const users = await User.findById(req.user.id)
     const games = await Game.findById(req.body.gameid)
-    await Player.find({name: req.body.motm})
+    await Player.find({ $or: [
+      { name: req.body.motm},
+      { name: req.body.fgoal}
+    ]})
     .then(player => {
-    if(req.body.bettype == undefined) {
+    if(req.body.bettype == undefined & req.body.fgoal == undefined) {
       bet_type = req.body.motm + " MOTM"
       odds = player[0].mvp_odds
+    } else if(req.body.bettype == undefined) {
+      console.log(player)
+      bet_type = req.body.fgoal + " first goal scorer"
+      odds = player[0].fgoal_odds
     } else {
       console.log('Non MOTM')
       console.log(req.body.bettype)
@@ -189,6 +196,7 @@ router.put('/:id/completed', ensureAuthenticated, async (req, res) => {
     game.yellow_cards = req.body.yellow_cards
     game.red_card = req.body.red_card
     game.mvp = req.body.motm
+    game.fgoal_scorer = req.body.fgoal
     if(req.body.red_card == null) {
       game.red_card = false
     }

@@ -66,6 +66,9 @@ const gameSchema = new mongoose.Schema ({
   mvp: {
     type: String,
   },
+  fgoal_scorer: {
+    type: String,
+  }
 })
 
 // Checks for bets on game before allowing it to be deleted
@@ -84,11 +87,13 @@ gameSchema.pre('remove', function(next) {
 gameSchema.post('save', async function(next) {
   try {
   await Bet.find({ game: this.id }, (error, bets) => {
-    var bettype = [this.team_a, this.team_b, "draw", "Over " + this.ougoals + " goals", "Under " + this.ougoals + " goals", "Red Card", "MOTM"]
+    var bettype = [this.team_a, this.team_b, "draw", "Over " + this.ougoals + " goals", "Under " + this.ougoals + " goals", "Red Card"]
 
     for (const bet of bets) {
       var check_MOTM = bet.type.includes("MOTM")
       var MOTM = bet.type.includes(this.mvp)
+      var check_fgoal = bet.type.includes("first goal")
+      var fgoal = bet.type.includes(this.fgoal_scorer)
       if(this.completed == true) {
         if(bet.type == bettype[0] & this.team_a_goals > this.team_b_goals) {
           bet.win = true
@@ -103,6 +108,8 @@ gameSchema.post('save', async function(next) {
         } else if(bet.type == bettype[5] & this.red_card == true) {
           bet.win = true
         } else if(check_MOTM == true & MOTM == true)  {
+          bet.win = true
+        } else if(check_fgoal == true & fgoal == true)  {
           bet.win = true
         } else { bet.win = false}
         bet.settled = true

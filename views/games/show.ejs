@@ -8,28 +8,15 @@
   <p class="lead mb-3">Started: <%= game.started %></p>
   <p class="lead mb-3">Completed: <%= game.completed %></p>
   <p class="lead mb-3">User Balance: <%= users.balance %></p>
-  <h4>Man of the match odds</h4>
+  <h4>Man of the match & first goal odds</h4>
   <div class="row">
-  <% for(var i=0; i < 6; i++) { %>
-    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: <%= players[i].mvp_odds %></p></div>
+  <% for(var i=0; i < players.length; i++) { %>
+    <div class="col md-3"><p><%= players[i].name %>: MOTM <%= players[i].mvp_odds %>, First Goal: <%= players[i].fgoal_odds %></p></div>
  <% } %>
+ <!-- Show_extra goes here -->
 </div>
-<div class="row">
-  <% for(var i=6; i < 12; i++) { %>
-    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: <%= players[i].mvp_odds %></p></div>
- <% } %>
-</div>
-<div class="row">
-  <% for(var i=12; i < 18; i++) { %>
-    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: <%= players[i].mvp_odds %></p></div>
- <% } %>
-</div>
-<div class="row">
-  <% for(var i=18; i < players.length; i++) { %>
-    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: <%= players[i].mvp_odds %></p></div>
- <% } %>
-</div>
-  <h4>Place new bet</h4>
+  <h3>Place new bet</h3>
+  <h4>Game betting</h4>
   <form action="/games/list" method="POST" class="form-inline">
     <div class="form-group">
       <label for="stake">Stake</label>
@@ -48,13 +35,32 @@
     <button type="submit" class="btn btn-default">Bet</button>
   </form>
   <br>
-  <h4>Man of the Match betting</h4>
+  <h4>Man of the Match</h4>
   <form action="/games/list" method="POST" class="form-inline">
   <div class="form-group">
     <label for="stake">Stake</label>
     <input type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
   </div>
   <select class="form-control" name="motm">
+    <% for(var i=0; i < players.length; i++) { %>
+       <option value="<%= players[i].name %>" ><%= players[i].name %></option>
+    <% } %>
+  </select>
+  <div class="form-group">
+    <input type="text" class="form-control" name="gameid" value="<%= game.id %>" placeholder="<%= game.id %>" hidden>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="game_title" value="<%= game.team_a %> vs <%= game.team_b %>" placeholder="<%= game.id %>" hidden> </div>
+  <button type="submit" class="btn btn-default">Bet</button>
+</form>
+<br>
+  <h4>First goal scorer</h4>
+<form action="/games/list" method="POST" class="form-inline">
+  <div class="form-group">
+    <label for="stake">Stake</label>
+    <input type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
+  </div>
+  <select class="form-control" name="fgoal">
     <% for(var i=0; i < players.length; i++) { %>
        <option value="<%= players[i].name %>" ><%= players[i].name %></option>
     <% } %>

@@ -1,0 +1,15 @@
+<div class="row">
+  <% for(var i=6; i < 12; i++)  { %>
+    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: MOTM <%= players[i].mvp_odds %>, First Goal: <%= players[i].fgoal_odds %></p></div>
+ <% } %>
+</div>
+<div class="row">
+  <% for(var i=12; i < 18; i++)  { %>
+    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: MOTM <%= players[i].mvp_odds %>, First Goal: <%= players[i].fgoal_odds %></p></div>
+ <% } %>
+</div>
+<div class="row">
+  <% for(var i=18; i < players.length; i++)  { %>
+    <div class="col md-2"><p class="col md-4" ><%= players[i].name %>: MOTM <%= players[i].mvp_odds %>, First Goal: <%= players[i].fgoal_odds %></p></div>
+ <% } %>
+</div>
