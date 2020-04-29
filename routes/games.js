@@ -35,9 +35,9 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
   try {
     const users = await User.findById(req.user.id)
     const games = await Game.findById(req.body.gameid)
-    if(req.body.bettype == games.team_a + " to win") {
+    if(req.body.bettype == games.team_a ) {
       odds = games.odds_a
-    } else if(req.body.bettype == games.team_b + " to win") {
+    } else if(req.body.bettype == games.team_b) {
       odds = games.odds_b
     } else if(req.body.bettype == "draw") {
       odds = games.odds_draw
@@ -101,6 +101,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
+    console.log(userBets)
     var bettype = [game.team_a, game.team_b, "draw", "Over " + game.ougoals + " goals", "Under " + game.ougoals + " goals", "Red Card"]
     if(game.started == false & game.completed == false){ 
       res.render('games/show', {
@@ -189,7 +190,9 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
     game.odds_b = req.body.odds_b   
     game.odds_draw = req.body.odds_draw
     game.ougoals = req.body.ougoals
-    game.odds_ougoals = req.body.odds_ougoals
+    game.odds_ogoals = req.body.odds_ogoals
+    game.odds_ugoals = req.body.odds_ugoals
+    game.odds_rcard = req.body.odds_rcard
     game.started = req.body.started
     game.completed = req.body.completed
     if(req.body.started == null) {

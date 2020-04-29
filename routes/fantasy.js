@@ -148,13 +148,15 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
       res.render('fantasy/started', {
         fantasygame: fantasygame,
         users: users,
+        bettype: bettype,
         userBets: userFantasyBets
       })
     } else { 
       res.render('fantasy/show', {
         fantasygame: fantasygame,
         users: users,
-        bettype: bettype
+        bettype: bettype,
+        userBets: userFantasyBets
       })
     }
     

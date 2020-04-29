@@ -1,0 +1,23 @@
+<form action="/player" method="POST">
+<label>Player Name</label>
+<input type="text" name="name" value="<%= player.name %>">
+<div>
+<label>Country</label>
+<input type="text" name="country" value="<%= player.country %>">
+</div>
+<div>
+  <label>Fantasy team</label>
+  <input type="text" name="fantasy_team" value="<%= player.fantasy_team %>">
+</div>
+<div>
+  <label>Position</label>
+  <select name="position" class="form-control">
+    <option label="goalkeeper" value="goalkeeper">
+    <option label="defender" value="defender">
+    <option label="midfielder" value="midfielder">
+    <option label="forward" value="forward">
+  </select>
+  <a href="/games">Cancel</a>
+  <button type="submit">Create</button>
+</div>
+</form>

@@ -29,6 +29,9 @@ const UserSchema = new mongoose.Schema({
     default: defaultBalance,
     required: true
   },
+  fantasy_team: {
+    type: String,
+  }
 })
 
 const User = mongoose.model('User', UserSchema)

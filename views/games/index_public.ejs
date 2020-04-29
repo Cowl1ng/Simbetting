@@ -16,9 +16,15 @@
   <p class="lead mb-3">Team B: <%= game.team_b %> , Odds: <%= game.odds_b %></p>
   <p class="lead mb-3">Draw Odds: <%= game.odds_draw %></p>
   <p class="lead mb-3">Over/Under: <%= game.ougoals %> goals <br>Over Odds: <%= game.odds_ogoals %> , Under Odds: <%= game.odds_ugoals %></p>
+  <p class="lead mb-3">Red Card odds: <%= game.odds_rcard %></p>
   <p class="lead mb-3">Started: <%= game.started %></p>
   <p class="lead mb-3">Completed: <%= game.completed %></p>
   </div>
   <% game_number += 1 %>
  <% }) %>
+ <select class="form-control" id="sel1">
+  <% for(var i=0; i < games.length; i++) { %>
+     <option><%= games[i].team_a %></option>
+  <% } %>
+  </select>
 

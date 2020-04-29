@@ -1,0 +1,83 @@
+<%- include('_headers_public.ejs') %>
+<h2>New Lineup, your selected formation is <%= formation%></h2>
+<form action="/player/lineup" method="POST" class="form-inline">
+<div>
+<select class="form-control" name="goalkeeper">
+  <% for(var i=0; i < goalkeepers.length; i++) { %>
+     <option value="<%= goalkeepers[i] %>" ><%= goalkeepers[i] %></option>
+  <% } %>
+  </select>
+<select class="form-control" name="player_1">
+  <% for(var i=0; i < defenders.length; i++) { %>
+     <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
+  <% } %>
+</select>
+<select class="form-control" name="player_2">
+  <% for(var i=0; i < defenders.length; i++) { %>
+     <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
+  <% } %>
+</select>
+<select class="form-control" name="player_3">
+  <% for(var i=0; i < defenders.length; i++) { %>
+     <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
+  <% } %>
+</select>
+<select class="form-control" name="player_4">
+  <% if(formation > 400) { %>
+    <% for(var i=0; i < defenders.length; i++) { %>
+        <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
+  <% }} else { %> 
+    <% for(var i=0; i < midfielders.length; i++) { %>
+        <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>  
+    <% } %>
+  <% } %>
+</select>
+<select class="form-control" name="player_5">
+  <% if(formation > 500) { %>
+    <% for(var i=0; i < defenders.length; i++) { %>
+        <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
+  <% }} else { %> 
+    <% for(var i=0; i < midfielders.length; i++) { %>
+        <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>  
+    <% } %>
+  <% } %>
+</select>
+<select class="form-control" name="player_6">
+  <% for(var i=0; i < midfielders.length; i++) { %>
+     <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>
+  <% } %>
+</select>
+<select class="form-control" name="player_7">
+  <% for(var i=0; i < midfielders.length; i++) { %>
+     <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>
+  <% } %>
+</select>
+<select class="form-control" name="player_8">
+  <% if(formation == 343 || formation == 433) { %>
+    <% for(var i=0; i < forwards.length; i++) { %>
+        <option value="<%= forwards[i] %>" ><%= forwards[i] %></option>
+  <% }} else { %> 
+    <% for(var i=0; i < midfielders.length; i++) { %>
+        <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>  
+    <% } %>
+  <% } %>
+</select>
+<select class="form-control" name="player_9">
+  <% if(formation == 451 || formation == 541) { %>
+    <% for(var i=0; i < midfielders.length; i++) { %>
+        <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>
+  <% }} else { %> 
+    <% for(var i=0; i < forwards.length; i++) { %>
+        <option value="<%= forwards[i] %>" ><%= forwards[i] %></option>  
+    <% } %>
+  <% } %>
+</select>
+<select class="form-control" name="player_10">
+  <% for(var i=0; i < forwards.length; i++) { %>
+     <option value="<%= forwards[i] %>" ><%= forwards[i] %></option>
+  <% } %>
+</select>
+<button type="submit" class="btn btn-info">Change Lineup</button>
+
+</div>
+</form>

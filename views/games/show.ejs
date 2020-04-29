@@ -4,6 +4,7 @@
   <p class="lead mb-3"><%= game.team_b %> =>  Odds: <%= game.odds_b %></p>
   <p class="lead mb-3">Draw Odds: <%= game.odds_draw %></p>
   <p class="lead mb-3">Over/Under: <%= game.ougoals %> goals<br> Over Odds: <%= game.odds_ogoals %> <br> Under Odds: <%= game.odds_ugoals %></p>
+  <p class="lead mb-3">Red Card odds: <%= game.odds_rcard %></p>
   <p class="lead mb-3">Started: <%= game.started %></p>
   <p class="lead mb-3">Completed: <%= game.completed %></p>
   <p class="lead mb-3">User Balance: <%= users.balance %></p>
@@ -12,15 +13,12 @@
       <label for="stake">Stake</label>
       <input type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
     </div>
-    <select name="bettype" class="form-control">
-      <option label="<%= bettype[0] %> to win" value="<%= bettype[0] %> to win">
-      <option label="<%= bettype[1] %> to win" value="<%= bettype[1] %> to win">
-      <option label="<%= bettype[2] %>" value="<%= bettype[2] %>">
-      <option label="<%= bettype[3] %>" value="<%= bettype[3] %>">
-      <option label="<%= bettype[4] %>" value="<%= bettype[4] %>">
-      <option label="<%= bettype[5] %>" value="<%= bettype[5] %>">
 
-    </select>
+    <select class="form-control" name="bettype">
+      <% for(var i=0; i < bettype.length; i++) { %>
+         <option value="<%= bettype[i] %>"><%= bettype[i] %></option>
+      <% } %>
+      </select>
     <div class="form-group">
       <input type="text" class="form-control" name="gameid" value="<%= game.id %>" placeholder="<%= game.id %>" hidden>
       </div>
