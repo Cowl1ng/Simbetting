@@ -2,12 +2,15 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
+image= [{image: "./background.jpg"}]
 
 // User model
 const User = require('../models/User')
 
 // Login page
 router.get('/login', (req, res) => res.render('login'))
+
+router.get('/test', (req, res) => res.render('test', {backgroundimage: image}))
 
 // Register page
 router.get('/register', (req, res) => res.render('register'))

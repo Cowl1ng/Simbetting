@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require('../config/auth')
 const Bet = require('../models/bet')
 const User = require('../models/User')
 const Player = require('../models/player')
-
+const FantasyGame = require('../models/fantasyGame')
 
 // All games route
 router.get('/', ensureAuthenticated, async (req, res) => {
@@ -20,9 +20,14 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 })
 // Public games list
 router.get('/list', ensureAuthenticated, async (req, res) => {
+  
   try {
-    const games = await Game.find({})
-    res.render ('games/index_public', {games: games})  
+    const games = await Game.find({completed: false}).limit(10)
+    const completedGames = await Game.find({completed: true}).limit(10)
+    res.render ('games/index_public', {
+      games: games,
+      completedGames: completedGames
+    })  
   } catch {
       res.redirect('/')
       console.log('Failed')

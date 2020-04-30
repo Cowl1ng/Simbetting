@@ -7,6 +7,7 @@ const FantasyBet = require('../models/fantasyBet')
 const User = require('../models/User')
 gameWeek = 1
 
+
 // All games route
 router.get('/', ensureAuthenticated, async (req, res) => {
   try {
@@ -30,10 +31,15 @@ router.get('/nextweek', ensureAuthenticated, async (req, res) => {
 })
 // Public games route
 router.get('/list', ensureAuthenticated, async (req, res) => {
+  nextWeek = gameWeek + 1
   try {
-    const fantasygames = await FantasyGame.find({game_week: gameWeek})
+    const fantasyGamesCompleted = await FantasyGame.find({completed: true}).limit(10)
+    const fantasyGamesThisWeek = await FantasyGame.find({game_week: gameWeek})
+    const fantasyGamesNextWeek = await FantasyGame.find({game_week: nextWeek})
     res.render ('fantasy/index_public', {
-      fantasygames: fantasygames,
+      fantasyGamesCompleted: fantasyGamesCompleted,
+      fantasyGamesThisWeek: fantasyGamesThisWeek,
+      fantasyGamesNextWeek: fantasyGamesNextWeek
     })  
   } catch {
       res.redirect('/')

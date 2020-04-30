@@ -3,13 +3,13 @@
   <div class="col-md-3">
   <h1 class="mt-4">Account</h1>
   </div>
-  <div class="col-md-3" role="navigation">
+  <div class="col-md-6" role="navigation">
     <br>
     <h2>Your bets</h2>
-    <ul class="nav nav-pills">
-      <li role="presentation" class="nav-item"><a class="nav-link active" href="/account">Open</a></li>
-      <li role="presentation" class="nav-item"><a class="nav-link active" href="/account/settled">Settled</a></li>
-      <li role="presentation" class="nav-item"><a class="nav-link active" href="/account/leaderboard">Leaderboard</a></li>
+    <ul class="nav nav-pills nav-justified">
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account">Open</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link active" style="font-size: xx-large;" href="/account/settled">Settled</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/leaderboard">Leaderboard</a></li>
     </ul>
   </div>
   </div>
@@ -19,27 +19,27 @@
   <h3>Balance: <%= balance  %></h3>
   <a href="/users/logout" class="btn btn-primary">Logout</a>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-6">
     <br>
 <% userBets.forEach(userBet => {  %>
   <% if(userBet.settled == true) { %>
   <% if(userBet.win == true) { %>
-    <h4>£ <%= userBet.stake %> bet on <%= userBet.type %></h4> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>
-    <h5 style="color:yellow;background-color:green">WON: £ <%= userBet.winnings%></h5>
+    <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a></p>
+    <h4 style="color:yellow;background-color:green">WON: £ <%= userBet.winnings%></h4>
     <% } else { %>
-      <h4>£ <%= userBet.stake %> bet on <%= userBet.type %></h4> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a></h4>
-      <h5 style="color:yellow;background-color:red">LOST</h5>
+      <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %></h4> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a></p>
+      <h4 style="color:yellow;background-color:red">LOST</h4>
     <% }} %>  
 <% }) %>
-<h3>Fantasy Bets</h3>
+<h2>Fantasy Bets</h2>
 <% userFantasyBets.forEach(userFantasyBet => {  %>
   <% if(userFantasyBet.settled == true) { %>
   <% if(userFantasyBet.win == true) { %>
-    <h4>£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/games/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a></h4>
-    <h5 style="color:yellow;background-color:green">WON: £ <%= userFantasyBet.winnings %></h5>
+    <p style="font-size: x-large;" class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/games/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a></p>
+    <h4 style="color:yellow;background-color:green">WON: £ <%= userFantasyBet.winnings %></h4>
     <% } else { %>
-      <h4>£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/games/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a></h4>
-      <h5 style="color:yellow;background-color:red">LOST</h5>
+      <p style="font-size: x-large;" class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/games/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a></p>
+      <h4 style="color:yellow;background-color:red">LOST</h4>
     <% }} %>  
 <% }) %>
 </div>

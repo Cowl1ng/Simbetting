@@ -1,10 +1,11 @@
 <%- include('_headers_public.ejs') %>
+<br>
 <div class="row">
 <form action="/player/lineup_change" method="POST" class="form-inline">
   <div class="col-md-6">
-  <h3>To change lineup select a formation</h3>
+  <h1>To change lineup select a formation</h1>
   </div>
-  <div class="col-md-3">
+  <div >
   <select class="form-control" name="formation">
     <option value="343">3-4-3</option>
     <option value="352">3-5-2</option>
@@ -17,53 +18,56 @@
   </select>
   </div>
   <div>
-  <button type="submit" class="btn btn-info">Change Lineup</button>
+  <button type="submit" class="btn btn-primary">Change Lineup</button>
   </div>
 </form>
 </div>
 <br><br>
-<h2>Current Lineup</h2>
+<h1>Current Lineup</h1>
 <div class="row">
   <div class="col-md-3">
-    <h4>Goalkeeper</h4>
+    <h2 style="font-size: 40px;">Goalkeeper</h2>
   </div>
   <div class="col-md-3">
-    <h4>Defenders</h4>
+    <h2 style="font-size: 40px;">Defenders</h2>
   </div>
   <div class="col-md-3">
-    <h4>Midfielders</h4>
+    <h2 style="font-size: 40px;">Midfielders</h2>
   </div>
   <div class="col-md-3">
-    <h4>Forwards</h4>
+    <h2 style="font-size: 40px;">Forwards</h2>
   </div>
 </div>
 <div class="row">
 <div class="col-md-3">
 <% goalkeepers.forEach(player => {  %>
-  <p class="lead mb-3">Name: <%= player.name %></p>
-  <p class="lead mb-3">Country: <%= player.country %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
   <br>
 <% }) %>
 </div>
 <div class="col-md-3">
 <% defenders.forEach(player => {  %>
-  <p class="lead mb-3">Name: <%= player.name %></p>
-  <p class="lead mb-3">Country: <%= player.country %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
   <br>
 <% }) %>
 </div>
 <div class="col-md-3">
 <% midfielders.forEach(player => {  %>
-  <p class="lead mb-3">Name: <%= player.name %></p>
-  <p class="lead mb-3">Country: <%= player.country %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
   <br>
 <% }) %>
 </div>
 <div class="col-md-3">
 <% forwards.forEach(player => {  %>
-  <p class="lead mb-3">Name: <%= player.name %></p>
-  <p class="lead mb-3">Country: <%= player.country %></p>
+  <% NEED if statement here for selecting playing = true
+  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
+  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
   <br>
 <% }) %>
 </div>
 </div>
+
+<h1>Subs</h1>

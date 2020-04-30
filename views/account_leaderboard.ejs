@@ -3,13 +3,13 @@
 <div class="col-md-3">
 <h1 class="mt-4">Account</h1>
 </div>
-<div class="col-md-3" role="navigation">
+<div class="col-md-6" role="navigation">
   <br>
   <h2>Your bets</h2>
-  <ul class="nav nav-pills">
-    <li role="presentation" class="nav-item"><a class="nav-link active" href="/account">Open</a></li>
-    <li role="presentation" class="nav-item"><a class="nav-link active" href="/account/settled">Settled</a></li>
-    <li role="presentation" class="nav-item"><a class="nav-link active" href="/account/leaderboard">Leaderboard</a></li>
+  <ul class="nav nav-pills nav-justified">
+    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account">Open</a></li>
+    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/settled">Settled</a></li>
+    <li role="presentation" class="nav-item"><a class="nav-link active" style="font-size: xx-large;" href="/account/leaderboard">Leaderboard</a></li>
   </ul>
 </div>
 </div>
@@ -19,10 +19,12 @@
 <h3>Balance: <%= balance  %></h3>
 <a href="/users/logout" class="btn btn-primary">Logout</a>
 </div>
-<div class="col-md-3">
+<div class="col-md-3 offset-2">
   <br>
+<% number = 1 %>
 <% users.forEach(user => {  %>
-  <h4><%= user.name %> : £ <%= user.balance %></h4>
+  <h2><%= number %>. <%= user.name %> : £ <%= user.balance %></h2>
+  <% number += 1 %>
 <% }) %>
 </div>
 </div>

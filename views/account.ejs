@@ -3,13 +3,13 @@
   <div class="col-md-3">
   <h1 class="mt-4">Account</h1>
   </div>
-  <div class="col-md-3" role="navigation">
+  <div class="col-md-6" role="navigation">
     <br>
     <h2>Your bets</h2>
-    <ul class="nav nav-pills">
-      <li role="presentation" class="nav-item"><a class="nav-link active" href="/account">Open</a></li>
-      <li role="presentation" class="nav-item"><a class="nav-link active" href="/account/settled">Settled</a></li>
-      <li role="presentation" class="nav-item"><a class="nav-link active" href="/account/leaderboard">Leaderboard</a></li>
+    <ul class="nav nav-pills nav-justified">
+      <li role="presentation" class="nav-item"><a class="nav-link active" style="font-size: xx-large;" href="/account">Open</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/settled">Settled</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/leaderboard">Leaderboard</a></li>
     </ul>
   </div>
   </div>
@@ -23,10 +23,10 @@
     <br>
 <% userBets.forEach(userBet => {  %>
   <% if(userBet.settled == false) { %>
-  <p class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. If it wins you will win: £ <%= userBet.winnings %></p>
+  <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. If it wins you will win: £ <%= userBet.winnings %></p>
   <% } %>
 <% }) %>
-<h3>Fantasy Bets</h3>
+<h2>Fantasy Bets</h2>
 <% userFantasyBets.forEach(userFantasyBet => {  %>
   <% if(userFantasyBet.settled == false) { %>
   <p class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/fantasy/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. If it wins you will win: £ <%= userFantasyBet.winnings %></p>

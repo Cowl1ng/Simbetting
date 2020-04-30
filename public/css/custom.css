@@ -1,0 +1,14 @@
+.big-banner {
+  background-image: url("background.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 1500px
+}
+
+.big-color {
+  background-image: linear-gradient(to right, hsl(), rgb(43, 128, 43));
+  height: 1000px
+
+}

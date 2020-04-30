@@ -72,7 +72,7 @@ router.get('/lineup', ensureAuthenticated, async (req, res) => {
   let forwards = []
   try {
     const users = await User.findById(req.user.id)
-    const players = await Player.find({fantasy_team: users.fantasy_team, playing: true})
+    const players = await Player.find({fantasy_team: users.fantasy_team})
     for(player of players) {
       if(player.position == "Goalkeeper") {
         goalkeepers.push(player)
