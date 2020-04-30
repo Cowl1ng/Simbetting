@@ -1,35 +1,44 @@
 <%- include('_headers_public.ejs') %>
-<h2>New Lineup, your selected formation is <%= formation%></h2>
+<h2>Select your new Lineup, your selected formation is <%= formation%></h2>
+<br>
 <form action="/player/lineup" method="POST" class="form">
-<div class="col-md-3">
+<div class="row">
+  <div class="col-md-3">
+<ul>
+  <h4>Goalkeeper</h4>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="goalkeeper">
   <% for(var i=0; i < goalkeepers.length; i++) { %>
      <option value="<%= goalkeepers[i] %>" ><%= goalkeepers[i] %></option>
   <% } %>
   </select>
-</div>
-<div class="col-md-3">
+</li>
+<h4>Defenders</h4>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_1">
   <% for(var i=0; i < defenders.length; i++) { %>
      <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_2">
   <% for(var i=0; i < defenders.length; i++) { %>
      <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_3">
   <% for(var i=0; i < defenders.length; i++) { %>
      <option value="<%= defenders[i] %>" ><%= defenders[i] %></option>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<% if(formation < 400) {  %>
+  <h4>Midfielders</h4>
+<% } %>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_4">
   <% if(formation > 400) { %>
     <% for(var i=0; i < defenders.length; i++) { %>
@@ -40,8 +49,11 @@
     <% } %>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<% if(formation > 400 & formation < 500) {  %>
+  <h4>Midfielders</h4>
+<% } %>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_5">
   <% if(formation > 500) { %>
     <% for(var i=0; i < defenders.length; i++) { %>
@@ -52,20 +64,27 @@
     <% } %>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<% if(formation > 500) {  %>
+  <h4>Midfielders</h4>
+<% } %>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_6">
   <% for(var i=0; i < midfielders.length; i++) { %>
      <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>
   <% } %>
 </select>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_7">
   <% for(var i=0; i < midfielders.length; i++) { %>
      <option value="<%= midfielders[i] %>" ><%= midfielders[i] %></option>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<% if(formation == 343 || formation == 433) {  %>
+  <h4>Forwards</h4>
+<% } %>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_8">
   <% if(formation == 343 || formation == 433) { %>
     <% for(var i=0; i < forwards.length; i++) { %>
@@ -76,8 +95,11 @@
     <% } %>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<% if(formation == 352 || formation == 442 || formation == 532) {  %>
+  <h4>Forwards</h4>
+<% } %>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_9">
   <% if(formation == 451 || formation == 541) { %>
     <% for(var i=0; i < midfielders.length; i++) { %>
@@ -88,31 +110,33 @@
     <% } %>
   <% } %>
 </select>
-</div>
-<div class="col-md-3">
+</li>
+<% if(formation == 451 || formation == 541) {  %>
+  <h4>Forwards</h4>
+<% } %>
+<li class="list-group-item d-flex justify-content-between align-items-center">
 <select class="form-control" name="player_10">
   <% for(var i=0; i < forwards.length; i++) { %>
      <option value="<%= forwards[i] %>" ><%= forwards[i] %></option>
   <% } %>
 </select>
+</li>
+</ul>
 </div>
+<div class="col-md-3 offset-md-1">
 <h4>Captain</h4>
-<div class="col-md-3">
   <select class="form-control" name="captain">
     <% for(var i=0; i < players.length; i++) { %>
        <option value="<%= players[i].name %>" ><%= players[i].name %></option>
     <% } %>
   </select>
-</div>
 <h4>Vice Captain</h4>
-<div class="col-md-3">
   <select class="form-control" name="vice_captain">
     <% for(var i=0; i < players.length; i++) { %>
         <option value="<%= players[i].name %>" ><%= players[i].name %></option>
     <% } %>
   </select>
-</div>
 <button type="submit" class="btn btn-info">Change Lineup</button>
-
 </div>
 </form>
+</div>

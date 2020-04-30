@@ -20,8 +20,9 @@
 <a href="/users/logout" class="btn btn-primary">Logout</a>
 </div>
 <div class="col-md-3">
+  <br>
 <% users.forEach(user => {  %>
-  <h4><%= user.username %> : £ <%= user.balance %></h4>
+  <h4><%= user.name %> : £ <%= user.balance %></h4>
 <% }) %>
 </div>
 </div>

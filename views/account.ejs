@@ -20,6 +20,7 @@
   <a href="/users/logout" class="btn btn-primary">Logout</a>
   </div>
   <div class="col-md-3">
+    <br>
 <% userBets.forEach(userBet => {  %>
   <% if(userBet.settled == false) { %>
   <p class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. If it wins you will win: £ <%= userBet.winnings %></p>
