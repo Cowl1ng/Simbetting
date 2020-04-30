@@ -9,14 +9,15 @@
     <li role="presentation" class="nav-link"><a href="/fantasy/list/nextweek">Next week</a></li>
   </ul>
 </nav>
-<div>
-
+</div>
+  <div id="row">
  <% fantasygames.forEach(fantasygame => {  %>
-  <div id="container">
-    <a href="/fantasy/<%= fantasygame.id %>"><%= fantasygame.team_a %> vs <%= fantasygame.team_b %></a>
-  <p class="lead mb-3"><%= fantasygame.team_a %> to win: <%= fantasygame.odds_a %></p>
-  <p class="lead mb-3"><%= fantasygame.team_b %> to win: <%= fantasygame.odds_b %></p>
-  <p class="lead mb-3">Draw : <%= fantasygame.odds_draw %></p>
+  <div class="col-md-3">
+  <a href="/fantasy/<%= fantasygame.id %>"><%= fantasygame.team_a %> vs <%= fantasygame.team_b %></a>
+  <h6><%= fantasygame.team_a %> to win: <%= fantasygame.odds_a %></h6>
+  <h6><%= fantasygame.team_b %> to win: <%= fantasygame.odds_b %></h6>
+  <h6>Draw : <%= fantasygame.odds_draw %></h6>
   </div>
  <% }) %>
+</div>
 

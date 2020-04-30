@@ -1,12 +1,5 @@
 <%- include('_headers_public.ejs') %>
-<h2>Search Games</h2>
-<form action="/games" method="GET">
-<label>Team</label>
-<input type="text" name="name">
-<button type="submit">Search</button>
-</form>
-<br>
-
+<h3>Upcoming games</h3>
 <% game_number = 1 %>
 <% games.forEach(game => {  %>
   <%if(game.completed == true) {game.started = true} %>
