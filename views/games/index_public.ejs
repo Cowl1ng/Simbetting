@@ -1,28 +1,39 @@
 <%- include('_headers_public.ejs') %>
+<div class="jumbotron big-color">
 <br>
 <ul class="nav nav-tabs nav-justified">
-  <li class="nav-item"><a class="nav-link-active" style="font-size: xx-large;" href="/games/list">Games</a></li>
-  <li class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/fantasy/list/">Fantasy games</a></li>
+  <li class="nav-item"><a class="nav-link-active" href="/games/list"><h1 style="font-size: 50px; color:#E3CF5B">Games</h1></a></li>
+  <li class="nav-item"><a class="nav-link" href="/fantasy/list/"><h1 style="font-size: 50px; color:#E3E3E3">Fantasy games</h1></a></li>
 </ul>
 <br>
 <div class="row">
-<div class="col-md-3 offset-2">
-  <u style="font-size: 45px;" class="text-primary">Upcoming</u><br>
+<div class="col-md-4 offset-1">
+  <h1 style="font-size: 45px; color:#E3E3E3; text-align: center;">Upcoming</h1><br>
   <% games.forEach(game => {  %>
+    <div class="card border-primary-mb-3" style="max-width: 75rem; background-color: #799DB1;">
+      <div class="card-header" style="text-align: center">
+      
     <%if(game.completed == true) { %>
       <%  game.started = true %>
     <% } else { %>
-      <a style="font-size: 40px;"   href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
-      <br><br>
+      <a style="font-size: 40px; color:#E3E3E3"   href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
+    </div>
+  </div>
+  <br>
     <% } %>
     <% }) %>
 </div>
-<div class="col-md-3 offset-2">
-  <u style="font-size: 45px;" class="text-primary">Completed</u><br>
+<div class="col-md-4 offset-2">
+  <h1 style="font-size: 45px; color:#E3E3E3; text-align: center;">Completed</h1><br>
 <% completedGames.forEach(game => {  %>
+  <div class="card border-primary-mb-3" style="max-width: 75rem; background-color: #799DB1;">
+    <div class="card-header" style="text-align: center;">
     <%  game.started = true %>
-    <a style="font-size: 40px;" class="text-default"  href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
-    <br><br>
+    <a style="font-size: 40px; color:#E3E3E3" class="text-default"  href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
+  </div>
+  </div>
+  <br>
   <% }) %>
+</div>
 </div>
 </div>

@@ -23,6 +23,37 @@ router.get('/', ensureAuthenticated, async (req, res) => {
 }
 })
 
+
+router.get('/free_agents', ensureAuthenticated, async (req,res) => {
+  let goalkeepers = []
+  let defenders = []
+  let midfielders = []
+  let forwards = []
+  try {
+    const players = await Player.find({fantasy_team: 'Free Agent'})
+    for(player of players) {
+      if(player.position == "Goalkeeper") {
+        goalkeepers.push(player)
+      } else if(player.position == "Defender") {
+        defenders.push(player)
+      } else if(player.position == "Midfielder") {
+        midfielders.push(player)
+      } else if(player.position == "Forward") {
+        forwards.push(player)
+      }
+    }
+    res.render('./free_agents', { 
+      goalkeepers: goalkeepers,
+      defenders: defenders,
+      midfielders: midfielders,
+      forwards: forwards,
+      players: players
+     })
+  } catch(err) {
+    console.log(err)
+  }
+})
+
 router.get('/all_lineups', ensureAuthenticated, async (req, res) => {
   let wedge = []
   let forbes = []
@@ -89,7 +120,8 @@ router.get('/lineup', ensureAuthenticated, async (req, res) => {
       goalkeepers: goalkeepers,
       defenders: defenders,
       midfielders: midfielders,
-      forwards: forwards
+      forwards: forwards,
+      players: players
      })
   } catch(err) {
     console.log(err)

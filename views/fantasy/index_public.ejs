@@ -1,32 +1,37 @@
 <%- include('_headers_public.ejs') %>
 <%- include('_messages') %>
+<div class="jumbotron double-color">
 <br>
 <ul class="nav nav-tabs nav-justified">
-  <li class="nav-item"><a class="nav-link-active" style="font-size: xx-large;" href="/games/list">Games</a></li>
-  <li class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/fantasy/list/">Fantasy games</a></li>
+  <li class="nav-item"><a class="nav-link-active" href="/games/list"><h1 style="font-size: 50px; color:#E3E3E3">Games</h1></a></li>
+  <li class="nav-item"><a class="nav-link" href="/fantasy/list/"><h1 style="font-size: 50px; color:#E3CF5B">Fantasy games</h1></a></li>
 </ul>
 <br>
 <div class="row">
 <div class="col-md-8 ">
   <div class="row">
   <div class="col-md-6">
-    <u style="font-size: 45px;" class="text-primary">This Week</u><br>
+    <h1 style="font-size: 45px; color: #E3E3E3">This Week</h1><br>
   <% fantasyGamesThisWeek.forEach(game => {  %>
     <%if(game.completed == true) { %>
       <%  game.started = true %>
     <% } else { %>
-      <a style="font-size: 40px;"   href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
-      <br><br>
+      <div class="card border-primary-mb-3" style="max-width: 28rem; background-color: #799DB1;">
+        <div class="card-header" style="text-align: center;">
+      <a style="font-size: 40px; color: #E3E3E3"   href="/fantasy/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
+        </div>
+      </div>
+      <br>
     <% } %>
     <% }) %>
   </div>
   <div class="col-md-6">
-    <u style="font-size: 45px;" class="text-primary">Next Week</u><br>
+    <h1 style="font-size: 45px; color: #E3E3E3">Next Week</h1><br>
   <% fantasyGamesNextWeek.forEach(game => {  %>
     <%if(game.completed == true) { %>
       <%  game.started = true %>
     <% } else { %>
-      <a style="font-size: 40px;"   href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
+      <a style="font-size: 40px; color: #E3E3E3" href="/fantasy/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
       <br><br>
     <% } %>
     <% }) %>
@@ -34,7 +39,7 @@
   </div>
 </div>
 <div class="col-md-4">
-  <u style="font-size: 45px;" class="text-primary">Completed</u><br>
+  <h1 style="font-size: 45px; color: #E3E3E3">Completed</h1><br>
 <% fantasyGamesCompleted.forEach(game => {  %>
   <%if(game.completed == true) { %>
     <%  game.started = true %>
@@ -42,5 +47,6 @@
     <br><br>
   <% } %>
   <% }) %>
+</div>
 </div>
 </div>

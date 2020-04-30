@@ -4,11 +4,22 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 1500px
+  height: 1600px
 }
 
 .big-color {
-  background-image: linear-gradient(to right, hsl(), rgb(43, 128, 43));
-  height: 1000px
-
+  background-color: #252A37;
+  height: 100%;
+  color: #E3E3E3;
 }
+
+.double-color {
+  background-color: #11242E;
+  height: 100%;
+  color: #E3E3E3;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #11242E;
+ }
