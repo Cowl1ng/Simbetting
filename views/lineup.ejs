@@ -1,11 +1,9 @@
 <%- include('_headers_public.ejs') %>
 <br>
+<div class="jumbotron big-color">
 <div class="row">
 <form action="/player/lineup_change" method="POST" class="form-inline">
-  <div class="col-md-6">
-  <h1>To change lineup select a formation</h1>
-  </div>
-  <div >
+  <h1 style="color: #E3E3E3">To change lineup select a formation</h1>
   <select class="form-control" name="formation">
     <option value="343">3-4-3</option>
     <option value="352">3-5-2</option>
@@ -16,61 +14,60 @@
     <option value="532">5-3-2</option>
     <option value="541">5-4-1</option>
   </select>
-  </div>
-  <div>
-  <button type="submit" class="btn btn-primary">Change Lineup</button>
-  </div>
+  <button type="submit" class="btn btn-primary" style="font-size: large;">Change Lineup</button>
 </form>
-<div class="offset-2">
-  <a class="nav-link" style="font-size: xx-large;" href="/player/free_agents">See free agents</a>
-</div>
 </div>
 <br><br>
-<h1>Current Lineup</h1>
+<h1 style="color: #E3CF5B; text-align: center; font-size: 50px;">Current Lineup</h1>
 <div class="row">
   <div class="col-md-3">
-    <h2 style="font-size: 40px;">Goalkeeper</h2>
+    <h2 style="font-size: 40px; color: #E3E3E3">Goalkeeper</h2>
   </div>
   <div class="col-md-3">
-    <h2 style="font-size: 40px;">Defenders</h2>
+    <h2 style="font-size: 40px; color: #E3E3E3">Defenders</h2>
   </div>
   <div class="col-md-3">
-    <h2 style="font-size: 40px;">Midfielders</h2>
+    <h2 style="font-size: 40px; color: #E3E3E3">Midfielders</h2>
   </div>
   <div class="col-md-3">
-    <h2 style="font-size: 40px;">Forwards</h2>
+    <h2 style="font-size: 40px; color: #E3E3E3">Forwards</h2>
   </div>
 </div>
 <div class="row">
 <div class="col-md-3">
 <% goalkeepers.forEach(player => {  %>
-  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
-  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
+  <% if(player.playing == true) { %>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
+  <% } %>
   <br>
 <% }) %>
 </div>
 <div class="col-md-3">
 <% defenders.forEach(player => {  %>
-  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
-  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
+  <% if(player.playing == true){ %>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
   <br>
+  <% } %>
 <% }) %>
 </div>
 <div class="col-md-3">
 <% midfielders.forEach(player => {  %>
-  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
-  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
+  <% if(player.playing == true){ %>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
   <br>
+  <% } %>
 <% }) %>
 </div>
 <div class="col-md-3">
 <% forwards.forEach(player => {  %>
-  <p style="font-size: 30px;" class="text-primary"><%= player.name %></p>
-  <p style="font-size: 30px;" class="text-primary"><%= player.country %></p>
+  <% if(player.playing == true){ %>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
   <br>
+  <% } %>
 <% }) %>
 </div>
 </div>
-
+<div>
 <h1>Subs</h1>
-
+</div>
+</div>

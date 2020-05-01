@@ -1,16 +1,18 @@
 <%- include('_headers_public.ejs') %>
-<div class="page-header">
-<h1 class="mt-4"><%= game.team_a %> vs <%= game.team_b %></h1>
-</div>
-<p class="lead mb-3"><%= game.team_a_goals %> : <%= game.team_b_goals %></p>
-<p class="lead mb-3"> The man of the match was: <%= game.mvp %></p>
-<h2 class="mt-4">Your bets</h2>
+<div class="jumbotron vertical-align big-color">
+<h1 style="text-align: center; font-size: 60px; color: #E3CF5B" ><%= game.team_a %> <%= game.team_a_goals %> : <%= game.team_b_goals %> <%= game.team_b %></h1>
+<h2 style="text-align: center; color: #E3CF5B"> First Goalscorer: <%= game.fgoal_scorer %></h2>
+<h2 style="text-align: center; color: #E3CF5B"> MOTM: <%= game.mvp %></h2>
+<h2 style="color: #E3E3E3">Your bets</h2>
+<div class="row">
+  <div class="col-md-4">
 <% userBets.forEach(userBet => {  %>
   <% if(userBet.win == true) { %>
-  <h4>£ <%= userBet.stake %> bet on <%= userBet.type %> won: £ <%= userBet.winnings %></h4>
-  <h5 style="color:yellow;background-color:green">WON</h5>
+  <h4 style="color: #E3E3E3">£ <%= userBet.stake %> bet on <%= userBet.type %></h4><h4><mark style=" background-color:green">won: £ <%= userBet.winnings %></mark></h4>
   <% } else { %>
-    <h4>£ <%= userBet.stake %> bet on <%= userBet.type %> lost </h4>
-    <h5 style="color:yellow;background-color:red">LOST</h5>
+    <h4 style="color: #E3E3E3">£ <%= userBet.stake %> bet on <%= userBet.type %></h4><h4><mark style=" background-color:red">LOST</mark></h4>
   <% } %>  
 <% }) %>
+</div>
+</div>
+  </div>

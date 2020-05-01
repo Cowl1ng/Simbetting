@@ -41,6 +41,7 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
   let bet_type = ''
   try {
     const users = await User.findById(req.user.id)
+    console.log(users.role)
     const games = await Game.findById(req.body.gameid)
     await Player.find({ $or: [
       { name: req.body.motm},
@@ -95,6 +96,7 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
   }
 })
 
+
 // Show create game  page route
 router.get('/new', ensureAuthenticated, (req, res) => {
   res.render('games/new', {game: new Game() })
@@ -102,6 +104,8 @@ router.get('/new', ensureAuthenticated, (req, res) => {
 
 //Create game route
 router.post('/', ensureAuthenticated, async (req, res) =>{
+  user = await User.findById(req.user.id)
+  if(user.name == 'Luke '|| 'Tim') {
   const newGame = new Game ({
     team_a: req.body.team_a,
     odds_a: req.body.odds_a,
@@ -119,6 +123,10 @@ router.post('/', ensureAuthenticated, async (req, res) =>{
               res.redirect('/games')
             })
             .catch(err => console.log(err))
+  } else {
+    res.redirect(`/games/list`)
+    console.log('Not allowed')
+  }
 })
 
 
@@ -128,10 +136,6 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
-    const players = await Player.find({ $or: [
-      { country: game.team_a},
-      { country: game.team_b}
-    ]})
     const players_show = await Player.find({$or: [
       { $and: [{country: game.team_a}, {starter: true}] },
       { $and: [{country: game.team_b}, {starter: true}] }
@@ -150,6 +154,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
         game: game,
         users: users,
         userBets: userBets,
+        players: players_show
       })
     } else {
 
@@ -181,6 +186,7 @@ router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
 router.get('/:id/result', ensureAuthenticated, async (req, res) => {
   try {
     const game = await Game.findById(req.params.id)
+
     const players = await Player.find({ $or: [
       { country: game.team_a},
       { country: game.team_b}
@@ -196,22 +202,28 @@ router.get('/:id/result', ensureAuthenticated, async (req, res) => {
   
 })
 // Request to edit result of game in mongodb
-router.put('/:id/completed', ensureAuthenticated, async (req, res) => {
-  let game
+router.put('/:id/completed', ensureAuthenticated, async (req, res) => {  
   try {
+    console.log('saving reuslt')
     game = await Game.findById(req.params.id)
-    game.team_a_goals = req.body.team_a_goals
-    game.team_b_goals = req.body.team_b_goals
-    game.yellow_cards = req.body.yellow_cards
-    game.red_card = req.body.red_card
-    game.mvp = req.body.motm
-    game.fgoal_scorer = req.body.fgoal
-    if(req.body.red_card == null) {
-      game.red_card = false
+    user = await User.findById(req.user.id)
+    if(user.name == 'Luke '|| 'Tim') {
+      game.team_a_goals = req.body.team_a_goals
+      game.team_b_goals = req.body.team_b_goals
+      game.yellow_cards = req.body.yellow_cards
+      game.red_card = req.body.red_card
+      game.mvp = req.body.motm
+      game.fgoal_scorer = req.body.fgoal
+      if(req.body.red_card == null) {
+        game.red_card = false
+      }
+      game.completed = true
+      await game.save()
+      res.redirect(`/games/${game.id}`)
+    } else {
+      res.redirect(`/games/list`)
+      console.log('Not allowed')
     }
-    game.completed = true
-    await game.save()
-    res.redirect(`/games/${game.id}`)
   } catch(err) {
     if(game == null) {
       res.redirect('/games')
@@ -229,6 +241,8 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
   let game
   try {
     game = await Game.findById(req.params.id)
+    user = await User.findById(req.user.id)
+    if(user.name == 'Luke'|| 'Tim') {
     game.team_a = req.body.team_a
     game.odds_a = req.body.odds_a
     game.team_b = req.body.team_b
@@ -248,6 +262,10 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
     }
     await game.save()
     res.redirect(`/games/${game.id}`)
+  } else {
+    res.redirect(`/games/list`)
+    console.log('Not allowed')
+  }
   } catch(err) {
     if(game == null) {
       res.redirect('/games')
@@ -266,7 +284,13 @@ router.delete('/:id', ensureAuthenticated, async (req, res) => {
   let game
   try {
     game = await Game.findById(req.params.id)
+    user = await User.findById(req.user.id)
+    if(user.name == 'Luke '|| 'Tim') {
     await game.remove()
+  } else {
+    res.redirect(`/games/list`)
+    console.log('Not allowed')
+  }
     res.redirect('/games')
   } catch (err){
     if(game == null) {

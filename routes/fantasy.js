@@ -62,6 +62,8 @@ router.get('/list/nextweek', ensureAuthenticated, async (req, res) => {
   
 })
 
+
+
 // Create bet route
 router.post('/list', ensureAuthenticated, async (req, res) =>{
   console.log('Submitting new bet')
@@ -109,16 +111,25 @@ router.get('/week', ensureAuthenticated, (req, res) => {
 // Post week change
 router.post('/new', ensureAuthenticated, async (req, res) => {
   gameWeek = req.body.game_week
+  user = await User.findById(req.user.id)
+  if(user.name == 'Luke '|| 'Tim') {
   if(req.body.started == 'true'){ 
     gameStarted = true
   } else { gameStarted = false }
   await FantasyGame.updateMany({game_week: { $lt: gameWeek }}, { $set: { 'completed': true, 'started': gameStarted }})  
   await FantasyGame.updateMany({game_week: { $gte: gameWeek }}, { $set: { 'completed': false, 'started': gameStarted }})
   res.redirect('/fantasy')
+  } else {
+    res.redirect(`/games/list`)
+    console.log('Not allowed')
+  }
+  
 })
 
 //Create game route
 router.post('/', ensureAuthenticated, async (req, res) =>{
+  user = await User.findById(req.user.id)
+  if(user.name == 'Luke '|| 'Tim') {
   const newFantasyGame = new FantasyGame ({
     team_a: req.body.team_a,
     odds_a: req.body.odds_a,
@@ -134,6 +145,10 @@ router.post('/', ensureAuthenticated, async (req, res) =>{
               res.redirect('/fantasy/list')
             })
             .catch(err => console.log(err))
+  } else {
+    res.redirect(`/games/list`)
+    console.log('Not allowed')
+  }
 })
 
 
@@ -198,11 +213,17 @@ router.put('/:id/completed', ensureAuthenticated, async (req, res) => {
   let fantasygame
   try {
     fantasygame = await FantasyGame.findById(req.params.id)
+    user = await User.findById(req.user.id)
+    if(user.name == 'Luke '|| 'Tim') {
     fantasygame.team_a_points = req.body.team_a_points
     fantasygame.team_b_points = req.body.team_b_points
     fantasygame.completed = true
     await fantasygame.save()
     res.redirect(`/fantasy/${fantasygame.id}`)
+  } else {
+    res.redirect(`/games/list`)
+    console.log('Not allowed')
+  }
   } catch(err) {
     if(game == null) {
       res.redirect('/fantasy')
@@ -213,28 +234,35 @@ router.put('/:id/completed', ensureAuthenticated, async (req, res) => {
         console.log(err)
     }
   }
+  
 })
 
 // Request to edit betting lines in mongodb
 router.put('/:id', ensureAuthenticated, async (req, res) => {
-  let game
   try {
     fantasygame = await FantasyGame.findById(req.params.id)
-    fantasygame.team_a = req.body.team_a
-    fantasygame.odds_a = req.body.odds_a
-    fantasygame.team_b = req.body.team_b
-    fantasygame.odds_b = req.body.odds_b   
-    fantasygame.odds_draw = req.body.odds_draw
-    fantasygame.started = req.body.started
-    fantasygame.completed = req.body.completed
-    if(req.body.started == null) {
-      fantasygame.started = false
+    user = await User.findById(req.user.id)
+    console.log(user)
+    if(user.name == 'Luke ' || 'Tim') {
+      fantasygame.team_a = req.body.team_a
+      fantasygame.odds_a = req.body.odds_a
+      fantasygame.team_b = req.body.team_b
+      fantasygame.odds_b = req.body.odds_b   
+      fantasygame.odds_draw = req.body.odds_draw
+      fantasygame.started = req.body.started
+      fantasygame.completed = req.body.completed
+      if(req.body.started == null) {
+        fantasygame.started = false
+      }
+      if(req.body.completed == null) {
+        fantasygame.completed = false
+      }
+      await fantasygame.save()
+      res.redirect(`/fantasy/${fantasygame.id}`)
+    } else {
+      res.redirect(`/games/list`)
+      console.log('Not allowed')
     }
-    if(req.body.completed == null) {
-      fantasygame.completed = false
-    }
-    await fantasygame.save()
-    res.redirect(`/fantasy/${fantasygame.id}`)
   } catch(err) {
     if(fantasygame == null) {
       res.redirect('/fantasy')
@@ -253,8 +281,13 @@ router.delete('/:id', ensureAuthenticated, async (req, res) => {
   let game
   try {
     game = await Game.findById(req.params.id)
+    if(user.name == 'Luke '|| 'Tim') {
     await game.remove()
     res.redirect('/fantasy')
+    } else {
+      res.redirect(`/games/list`)
+      console.log('Not allowed')
+    }
   } catch (err){
     if(game == null) {
       res.redirect('/fantasy')
