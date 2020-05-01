@@ -23,3 +23,7 @@
 .table-striped>tbody>tr:nth-child(odd)>th {
    background-color: #11242E;
  }
+
+ .inv {
+  display: none;
+}

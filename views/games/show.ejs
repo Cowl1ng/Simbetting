@@ -63,7 +63,7 @@
    <label style="font-size: x-large; color: #E3E3E3" for="stake">Stake</label>
    <input style="font-size: large;" type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
  </div>
- <select class="form-control" name="motm" style=background-color: #799DB1; color: #E3E3E3; font-size: large;">
+ <select class="form-control" name="motm" style="background-color: #799DB1; color: #E3E3E3; font-size: large;">
    <% for(var i=0; i < players.length; i++) { %>
       <option value="<%= players[i].name %>" ><%= players[i].name %></option>
    <% } %>
@@ -94,6 +94,25 @@
      <input type="text" class="form-control" name="game_title" value="<%= game.team_a %> vs <%= game.team_b %>" placeholder="<%= game.id %>" hidden> </div>
  <button type="submit" class="btn btn-info" style="font-size: large;">Bet</button>
 </form>
+<br>
+<h2 style="color: #E3E3E3; padding-left: 10%;">Correct Score</h2>
+<form action="/games/list" method="POST" class="form-inline">
+  <div class="form-group">
+    <label style="font-size: x-large; color: #E3E3E3" for="stake">Stake</label>
+    <input style="font-size: large;" type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
+  </div>
+  <select class="form-control" name="c_score" id="c_score" style="background-color: #799DB1; color: #E3E3E3; font-size: large;">
+    <% for(var i=0; i < players.length; i++) { %>
+       <option value="<%= players[i].name %>" ><%= players[i].name %></option>
+    <% } %>
+  </select>
+  <div class="form-group">
+    <input type="text" class="form-control" name="gameid" value="<%= game.id %>" placeholder="<%= game.id %>" hidden>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="game_title" value="<%= game.team_a %> vs <%= game.team_b %>" placeholder="<%= game.id %>" hidden> </div>
+  <button type="submit" class="btn btn-info" style="font-size: large;">Bet</button>
+ </form>
 </div>
 <div class="col-md-4">
   <h2 style="color: #E3E3E3;">Balance: £<%= users.balance %> </h2>
@@ -167,3 +186,21 @@
 </div>
 </div>
 <%- include('_messages') %>
+<script>
+  document
+      .getElementById('c_score')
+      .addEventListener('change', function () {
+          'use strict';
+          var vis = document.querySelector('.vis'),   
+              target = document.getElementById(this.value);
+          if (vis !== null) {
+              vis.className = 'inv';
+              console.log('inv')
+          }
+          if (target !== null ) {
+              target.className = 'vis';
+              console.log('vis')
+          }
+  });
+
+</script>

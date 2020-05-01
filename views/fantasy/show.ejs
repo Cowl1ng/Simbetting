@@ -1,31 +1,55 @@
 <%- include('_headers_public.ejs') %>
 <div class="jumbotron big-color">
-<h2> <%= fantasygame.team_a %> vs <%= fantasygame.team_b %></h2>
-<p class="lead mb-3"><%= fantasygame.team_a %> => Odds: <%= fantasygame.odds_a %></p>
-  <p class="lead mb-3"><%= fantasygame.team_b %> =>  Odds: <%= fantasygame.odds_b %></p>
-  <p class="lead mb-3">Draw Odds: <%= fantasygame.odds_draw %></p>
-  <p class="lead mb-3">User Balance: <%= users.balance %></p>
-  <form action="/fantasy/list" method="POST" class="form-inline">
-    <div class="form-group">
-      <label for="stake">Stake</label>
-      <input type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
+<h1  style="color: #E3CF5B; text-align: center; font-size: 60px;"> <%= fantasygame.team_a %> vs <%= fantasygame.team_b %></h1>
+<div class="row">
+<div class="col-md-4">
+<table class="table table-striped table-condensed" style="color: #E3E3E3; font-size: x-large;">
+  <tbody>
+  <tr>
+    <th style="font-size: x-large;">Moneyline</th>
+    <th style="font-size: x-large;">Odds</th>
+  </tr>
+  <tr>
+    <td><%= fantasygame.team_a %></td>
+    <td style="padding-left: 10%;"><%= fantasygame.odds_a %></td>
+  </tr>
+  <tr>
+    <td>Draw</td>
+    <td style="padding-left: 10%;"><%= fantasygame.odds_draw %> %></td>
+  </tr>
+  <tr>
+    <td><%= fantasygame.team_b %></td>
+    <td style="padding-left: 10%;"><%= fantasygame.odds_b %></td>
+  </tr>
+</table>
+<form action="/fantasy/list" method="POST" class="form-inline">
+  <div class="form-group">
+    <label for="stake" style="font-size: x-large; color: #E3E3E3">Stake &emsp;&emsp;</label>
+    <input type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
+  </div>
+  <select name="bettype" class="form-control">
+    <option label="<%= bettype[0] %> to win" value="<%= bettype[0] %> to win">
+    <option label="<%= bettype[1] %> to win" value="<%= bettype[1] %> to win">
+    <option label="<%= bettype[2] %>" value="<%= bettype[2] %>">
+  </select>
+  <div class="form-group">
+    <input type="text" class="form-control" name="gameid" value="<%= fantasygame.id %>" placeholder="<%= fantasygame.id %>" hidden>
     </div>
-    <select name="bettype" class="form-control">
-      <option label="<%= bettype[0] %> to win" value="<%= bettype[0] %> to win">
-      <option label="<%= bettype[1] %> to win" value="<%= bettype[1] %> to win">
-      <option label="<%= bettype[2] %>" value="<%= bettype[2] %>">
-    </select>
     <div class="form-group">
-      <input type="text" class="form-control" name="gameid" value="<%= fantasygame.id %>" placeholder="<%= fantasygame.id %>" hidden>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" name="game_title" value="<%= fantasygame.team_a %> vs <%= fantasygame.team_b %>" placeholder="<%= fantasygame.id %>" hidden> </div>
-    <button type="submit" class="btn btn-default">Bet</button>
-  </form>
-
-  <h2 class="mt-4">Your bets</h2>
-  <% userBets.forEach(userBet => {  %>
-    <p class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %>. If it wins you will win: £ <%= userBet.winnings %></p> 
-  <% }) %>
-  <%- include('_messages') %>
+      <input type="text" class="form-control" name="game_title" value="<%= fantasygame.team_a %> vs <%= fantasygame.team_b %>" placeholder="<%= fantasygame.id %>" hidden> </div>
+  <button type="submit" class="btn btn-default">Bet</button>
+</form>
 </div>
+<div class="col-md-4">
+
+  <div class="col-md-4">
+    <h2 class="mt-4">Your bets</h2>
+    <% userBets.forEach(userBet => {  %>
+      <p class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %>. If it wins you will win: £ <%= userBet.winnings %></p> 
+    <% }) %>
+    
+  </div>
+</div>
+</div>
+</div>
+<%- include('_messages') %>
