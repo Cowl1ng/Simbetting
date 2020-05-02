@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require('../config/auth')
 const Bet = require('../models/bet')
 const User = require('../models/User')
 const Player = require('../models/player')
-const FantasyGame = require('../models/fantasyGame')
+const Score = require('../models/score')
 
 // All games route
 router.get('/', ensureAuthenticated, async (req, res) => {
@@ -136,6 +136,16 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
+    const correct_scores = await Score.find({game_id: req.params.id}).lean()
+    const score_object = correct_scores[0]
+    var scores_odds = Object.values(score_object)
+    var scores = Object.keys(score_object)
+    console.log('Correct Scores:')
+    console.log(correct_scores[0])
+    console.log('Scores:')
+    console.log(scores)
+    console.log('Score Odds:')
+    console.log(scores_odds)
     const players_show = await Player.find({$or: [
       { $and: [{country: game.team_a}, {starter: true}] },
       { $and: [{country: game.team_b}, {starter: true}] }
@@ -147,7 +157,9 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
         users: users,
         bettype: bettype,
         userBets: userBets,
-        players: players_show
+        players: players_show,
+        scores: scores,
+        scores_odds: scores_odds
       })
     } else if(game.started == true & game.completed == false) {
       res.render('games/started', {
