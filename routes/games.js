@@ -41,14 +41,19 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
   let bet_type = ''
   try {
     const users = await User.findById(req.user.id)
-    console.log(users.role)
     const games = await Game.findById(req.body.gameid)
+    const correct_scores = await Score.find({game_id: req.body.gameid}).lean()
+    const score = String(req.body.c_score)
     await Player.find({ $or: [
       { name: req.body.motm},
       { name: req.body.fgoal}
     ]})
     .then(player => {
-    if(req.body.bettype == undefined & req.body.fgoal == undefined) {
+    if(req.body.bettype == undefined & req.body.fgoal == undefined & req.body.motm == undefined) {
+      bet_type = req.body.c_score + " score"
+      odds = correct_scores[0][score]
+      console.log(odds)
+    } else if(req.body.bettype == undefined & req.body.fgoal == undefined) {
       bet_type = req.body.motm + " MOTM"
       odds = player[0].mvp_odds
     } else if(req.body.bettype == undefined) {
@@ -73,9 +78,6 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
         odds = games.odds_rcard
       } else {console.log("Error getting odds")}
   }})
-    console.log('Odds & Bet_type')
-    console.log(odds)
-    console.log(bet_type)
     winnings = odds * req.body.stake
     winnings = winnings.toFixed(2)
     const newBet = new Bet ({
@@ -137,7 +139,6 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
     const correct_scores = await Score.find({game_id: req.params.id}).lean()
-    console.log(correct_scores)
     if(correct_scores != "") {
     const score_object = correct_scores[0]
     var scores_odds = Object.values(score_object)
@@ -223,6 +224,8 @@ router.put('/:id/completed', ensureAuthenticated, async (req, res) => {
       game.red_card = req.body.red_card
       game.mvp = req.body.motm
       game.fgoal_scorer = req.body.fgoal
+      game.score = String(req.body.team_a_goals + "-" + req.body.team_b_goals)
+      console.log(game.score)
       if(req.body.red_card == null) {
         game.red_card = false
       }

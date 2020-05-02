@@ -85,19 +85,14 @@ FantasyGameSchema.post('save', async function(next) {
        .catch(err => console.log(err))
     } else {
       bet.settled = false
-       FantasyBet.findOneAndUpdate({ _id: bet.id} , { win: bet.win, settled: true})
+       FantasyBet.findOneAndUpdate({ _id: bet.id} , {settled: false})
        .catch(err => console.log(err))
     } 
   }
 }) 
   
   
-  
-  
-  
-  
-  
-  
+ 
   await User.find({}, async (error, users) => {
   for (const user of users) {
     winnings = 0

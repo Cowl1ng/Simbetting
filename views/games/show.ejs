@@ -1,4 +1,4 @@
-<%- include('_headers_public.ejs') %>
+<%- include('../headers/_betting.ejs') %>
 <div class="jumbotron big-color">
 <br>
 <h1 style="color: #E3CF5B; text-align: center; font-size: 60px;"> <%= game.team_a %> vs <%= game.team_b %></h1>
@@ -124,9 +124,9 @@
     </div>
     <div class="form-group">
       <input type="text" class="form-control" name="game_title" value="<%= game.team_a %> vs <%= game.team_b %>" placeholder="<%= game.id %>" hidden> </div>
-      <div id="<%= scores[3] %>" class="vis">Odds: <%= scores_odds[3] %></div>
+      <div id="<%= scores[3] %>" class="vis">&ensp;Odds: <%= scores_odds[3] %>&ensp;</div>
       <% for(var i=3; i < scores.length; i++) { %>
-        <div id="<%= scores[i] %>" class="inv" style=> Odds: <%= scores_odds[i] %></div>
+        <div id="<%= scores[i] %>" class="inv" style=>&ensp;Odds: <%= scores_odds[i] %>&ensp;</div>
      <% } %>
   <button type="submit" class="btn btn-info" style="font-size: large;">Bet</button>
  </form>

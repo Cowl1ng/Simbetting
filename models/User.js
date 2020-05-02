@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     default: defaultBalance,
     required: true
   },
+  buys: {
+    type: Number,
+    default: 1
+  },
   preFbalance: {
     type: Number,
     default: defaultBalance,

@@ -1,30 +1,31 @@
-<%- include('./games/_headers_public.ejs') %>
+<%- include('./headers/_account.ejs') %>
+<div class="jumbotron big-color">
 <div class="row">
 <div class="col-md-3">
-<h1 class="mt-4">Account</h1>
+  <h3 style="color: #E3E3E3">Welcome <%= name %></h3>
+  <h3 style="color: #E3E3E3">Balance: <%= balance  %></h3>
+  <a href="/users/logout" class="btn btn-primary" style="background-color: #799DB1; color: #E3E3E3; font-size: large; ">Logout</a>
 </div>
 <div class="col-md-6" role="navigation">
   <br>
-  <h2>Your bets</h2>
+  <h2 style="text-align: center; font-size: xx-large; color:#E3CF5B">Leaderboard</h2>
   <ul class="nav nav-pills nav-justified">
-    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account">Open</a></li>
-    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/settled">Settled</a></li>
-    <li role="presentation" class="nav-item"><a class="nav-link active" style="font-size: xx-large;" href="/account/leaderboard">Leaderboard</a></li>
+    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large; color: #E3E3E3" href="/account">Open</a></li>
+    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large; color: #E3E3E3" href="/account/settled">Settled</a></li>
+    <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large; color:#E3CF5B" href="/account/leaderboard">Leaderboard</a></li>
   </ul>
 </div>
 </div>
 <div class="row">
-<div class ="col-md-3">
-<h3>Welcome <%= name %></h3>
-<h3>Balance: <%= balance  %></h3>
-<a href="/users/logout" class="btn btn-primary">Logout</a>
-</div>
+<div class ="col-md-3"></div>
 <div class="col-md-3 offset-2">
   <br>
 <% number = 1 %>
 <% users.forEach(user => {  %>
-  <h2><%= number %>. <%= user.name %> : £ <%= user.balance %></h2>
+  <h2 style="font-size: xx-large; color: #E3E3E3"><%= number %>. <%= user.name %> : £ <%= user.balance %></h2>
   <% number += 1 %>
+  <br>
 <% }) %>
+</div>
 </div>
 </div>

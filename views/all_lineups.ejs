@@ -1,71 +1,118 @@
 <%- include('_headers.ejs') %>
+<div class="jumbotron double-color">
 <h2>All Lineups</h2>
 <div class="row">
   <div class="col-md-2">
-  <h4>Wedge</h4>
+  <h4 style="color:#E3CF5B">Wedge</h4>
   <% wedge.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
     <p> <%= player.name%> </p>
   <% }) %>
   </div>
   <div class="col-md-2">
-  <h4>Forbes</h4>
+  <h4 style="color:#E3CF5B">Forbes</h4>
   <% forbes.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
     <p> <%= player.name%> </p>
   <% }) %>
   </div>
   <div class="col-md-2">
-  <h4>Tim</h4>
+  <h4 style="color:#E3CF5B">Tim</h4>
   <% tim.forEach(player => {  %>
-      <p> <%= player.name%> </p>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
+    <p> <%= player.name%> </p>
     <% }) %>
   </div>
   <div class="col-md-2">
-  <h4>Bowden</h4>
+  <h4 style="color:#E3CF5B">Bowden</h4>
     <% bow.forEach(player => {  %>
+      <% if(player.captain == true){ %>
+        <h6 style="color:#E3CF5B">Captain</h6>
+      <% } else if(player.vice_captain == true) { %>
+        <h6 style="color:#E3CF5B">Vice Captain</h6>
+      <% } %>
       <p> <%= player.name%> </p>
     <% }) %>
   </div>
   <div class="col-md-2">
-  <h4>Kite</h4>
+  <h4 style="color:#E3CF5B">Kite</h4>
   <% kite.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
     <p> <%= player.name%> </p>
   <% }) %>
 </div>
 </div>
 <div class="row">
   <div class="col-md-2">
-  <h4>Stark</h4>
+  <h4 style="color:#E3CF5B">Stark</h4>
   <% stark.forEach(player => {  %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4>Rog</h4>
-  <% rog.forEach(player => {  %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4>Coulman</h4>
-  <% coulman.forEach(player => {  %>
-      <p> <%= player.name%> </p>
-    <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4>Niall</h4>
-    <% niall.forEach(player => {  %>
-      <p> <%= player.name%> </p>
-    <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4>Cowling</h4>
-  <% cowling.forEach(player => {  %>
     <% if(player.captain == true){ %>
-      <h6>Captain</h6>
+      <h6 style="color:#E3CF5B">Captain</h6>
     <% } else if(player.vice_captain == true) { %>
-      <h6>Vice Captain</h6>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
     <% } %>
     <p> <%= player.name%> </p>
   <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4 style="color:#E3CF5B">Rog</h4>
+  <% rog.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4 style="color:#E3CF5B">Coulman</h4>
+  <% coulman.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
+    <p> <%= player.name%> </p>
+    <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4 style="color:#E3CF5B">Niall</h4>
+    <% niall.forEach(player => {  %>
+      <% if(player.captain == true){ %>
+        <h6 style="color:#E3CF5B">Captain</h6>
+      <% } else if(player.vice_captain == true) { %>
+        <h6 style="color:#E3CF5B">Vice Captain</h6>
+      <% } %>
+      <p> <%= player.name%> </p>
+    <% }) %>
+  </div>
+  <div class="col-md-2">
+  <h4 style="color:#E3CF5B">Cowling</h4>
+  <% cowling.forEach(player => {  %>
+    <% if(player.captain == true){ %>
+      <h6 style="color:#E3CF5B">Captain</h6>
+    <% } else if(player.vice_captain == true) { %>
+      <h6 style="color:#E3CF5B">Vice Captain</h6>
+    <% } %>
+    <p> <%= player.name%> </p>
+  <% }) %>
+</div>
 </div>
 </div>

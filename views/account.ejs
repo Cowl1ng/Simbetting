@@ -1,36 +1,38 @@
-<%- include('./games/_headers_public.ejs') %>
+<%- include('./headers/_account.ejs') %>
+<div class="jumbotron big-color">
 <div class="row">
   <div class="col-md-3">
-  <h1 class="mt-4">Account</h1>
+    <h3 style="color: #E3E3E3">Welcome <%= name %></h3>
+  <h3 style="color: #E3E3E3">Balance: <%= balance  %></h3>
+  <a href="/users/logout" class="btn btn-primary" style="background-color: #799DB1; color: #E3E3E3; font-size: large; ">Logout</a>
   </div>
   <div class="col-md-6" role="navigation">
     <br>
-    <h2>Your bets</h2>
+    <h2 style="text-align: center; font-size: xx-large; color:#E3CF5B">Your bets</h2>
     <ul class="nav nav-pills nav-justified">
-      <li role="presentation" class="nav-item"><a class="nav-link active" style="font-size: xx-large;" href="/account">Open</a></li>
-      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/settled">Settled</a></li>
-      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large;" href="/account/leaderboard">Leaderboard</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large; color:#E3CF5B" href="/account">Open</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large; color: #E3E3E3" href="/account/settled">Settled</a></li>
+      <li role="presentation" class="nav-item"><a class="nav-link" style="font-size: xx-large; color: #E3E3E3" href="/account/leaderboard">Leaderboard</a></li>
     </ul>
   </div>
   </div>
   <div class="row">
   <div class ="col-md-3">
-  <h3>Welcome <%= name %></h3>
-  <h3>Balance: <%= balance  %></h3>
-  <a href="/users/logout" class="btn btn-primary">Logout</a>
+  
   </div>
-  <div class="col-md-3">
+  <div class="col-md-6">
     <br>
 <% userBets.forEach(userBet => {  %>
   <% if(userBet.settled == false) { %>
-  <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> for the game <a href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. If it wins you will win: £ <%= userBet.winnings %></p>
+  <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> in <a style="color:#E3CF5B" href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. If it wins you will win: £ <%= userBet.winnings %></p>
   <% } %>
 <% }) %>
-<h2>Fantasy Bets</h2>
+<h2 style="text-align: center; font-size: xx-large; color:#E3CF5B">Fantasy Bets</h2>
 <% userFantasyBets.forEach(userFantasyBet => {  %>
   <% if(userFantasyBet.settled == false) { %>
-  <p class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> for the game <a href="/fantasy/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. If it wins you will win: £ <%= userFantasyBet.winnings %></p>
+  <p class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> in <a style="color:#E3CF5B" href="/fantasy/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. If it wins you will win: £ <%= userFantasyBet.winnings %></p>
   <% } %>
 <% }) %>
+</div>
 </div>
 </div>

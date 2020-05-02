@@ -1,4 +1,4 @@
-<%- include('_headers_public.ejs') %>
+<%- include('../headers/_betting.ejs') %>
 <%- include('_messages') %>
 <div class="jumbotron big-color">
 <br>
@@ -49,7 +49,7 @@
     <%  game.started = true %>
     <div class="card border-primary-mb-3" style="max-width: 28rem; background-color: #799DB1;">
       <div class="card-header" style="text-align: center;">
-    <a style="font-size: 40px; color: #E3E3E3"   href="/games/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
+    <a style="font-size: 40px; color: #E3E3E3"   href="/fantasy/<%= game.id %>"><%= game.team_a %> vs <%= game.team_b %></a>
   </div>
 </div>
     <br><br>

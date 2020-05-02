@@ -37,7 +37,7 @@
 <div class="col-md-3">
 <% goalkeepers.forEach(player => {  %>
   <% if(player.playing == true) { %>
-  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %>: <%= player.country %></p>
   <% } %>
   <br>
 <% }) %>
@@ -45,7 +45,7 @@
 <div class="col-md-3">
 <% defenders.forEach(player => {  %>
   <% if(player.playing == true){ %>
-  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %>: <%= player.country %></p>
   <br>
   <% } %>
 <% }) %>
@@ -53,7 +53,7 @@
 <div class="col-md-3">
 <% midfielders.forEach(player => {  %>
   <% if(player.playing == true){ %>
-  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %>: <%= player.country %></p>
   <br>
   <% } %>
 <% }) %>
@@ -61,7 +61,7 @@
 <div class="col-md-3">
 <% forwards.forEach(player => {  %>
   <% if(player.playing == true){ %>
-  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %></p>
+  <p style="font-size: 30px; color: #E3E3E3"><%= player.name %>: <%= player.country %></p>
   <br>
   <% } %>
 <% }) %>

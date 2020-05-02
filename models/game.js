@@ -94,6 +94,8 @@ gameSchema.post('save', async function(next) {
       var MOTM = bet.type.includes(this.mvp)
       var check_fgoal = bet.type.includes("first goal")
       var fgoal = bet.type.includes(this.fgoal_scorer)
+      var check_score = bet.type.includes("score")
+      var score = bet.type.includes(this.score)
       if(this.completed == true) {
         if(bet.type == bettype[0] & this.team_a_goals > this.team_b_goals) {
           bet.win = true
@@ -111,9 +113,15 @@ gameSchema.post('save', async function(next) {
           bet.win = true
         } else if(check_fgoal == true & fgoal == true)  {
           bet.win = true
+        }  else if(check_score == true & score == true)  {
+            bet.win = true
         } else { bet.win = false}
         bet.settled = true
         Bet.findOneAndUpdate({ _id: bet.id} , { win: bet.win, settled: true})
+        .catch(err => console.log(err))
+      } else {
+        bet.settled = false
+        Bet.findOneAndUpdate({ _id: bet.id} , {settled: false})
         .catch(err => console.log(err))
       }
     }
@@ -121,7 +129,7 @@ gameSchema.post('save', async function(next) {
 
   await User.find({}, async (error, users) => {
       for (const user of users) {
-      user.balance = defaultBalance   
+      user.balance = user.buys * defaultBalance 
       winnings = 0
       await Bet.find({ user: user.id }, (error, bets) => {
         for (bet of bets) {

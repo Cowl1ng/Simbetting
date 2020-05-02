@@ -31,7 +31,8 @@ router.get('/nextweek', ensureAuthenticated, async (req, res) => {
 })
 // Public games route
 router.get('/list', ensureAuthenticated, async (req, res) => {
-  nextWeek = gameWeek + 1
+  nextWeek = +gameWeek + 1
+  console.log(nextWeek)
   try {
     const fantasyGamesCompleted = await FantasyGame.find({completed: true}).limit(10)
     const fantasyGamesThisWeek = await FantasyGame.find({game_week: gameWeek})
@@ -242,7 +243,6 @@ router.put('/:id', ensureAuthenticated, async (req, res) => {
   try {
     fantasygame = await FantasyGame.findById(req.params.id)
     user = await User.findById(req.user.id)
-    console.log(user)
     if(user.name == 'Luke ' || 'Tim') {
       fantasygame.team_a = req.body.team_a
       fantasygame.odds_a = req.body.odds_a
