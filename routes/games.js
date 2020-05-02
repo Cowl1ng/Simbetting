@@ -137,15 +137,12 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
     const correct_scores = await Score.find({game_id: req.params.id}).lean()
+    console.log(correct_scores)
+    if(correct_scores != "") {
     const score_object = correct_scores[0]
     var scores_odds = Object.values(score_object)
     var scores = Object.keys(score_object)
-    console.log('Correct Scores:')
-    console.log(correct_scores[0])
-    console.log('Scores:')
-    console.log(scores)
-    console.log('Score Odds:')
-    console.log(scores_odds)
+    }
     const players_show = await Player.find({$or: [
       { $and: [{country: game.team_a}, {starter: true}] },
       { $and: [{country: game.team_b}, {starter: true}] }
@@ -179,7 +176,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
 
   } catch(err) {
     console.log(err)
-    res.redirect('/games')
+    res.redirect('/games/list')
   }
 })
 
@@ -189,7 +186,7 @@ router.get('/:id/edit', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     res.render('games/edit', {game: game })
   } catch {
-    res.redirect('/games')
+    res.redirect('/games/list')
   }
   
 })
