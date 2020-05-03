@@ -147,7 +147,7 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const players_show = await Player.find({$or: [
       { $and: [{country: game.team_a}, {starter: true}] },
       { $and: [{country: game.team_b}, {starter: true}] }
-  ]}).sort({fgoal_odds: 1})
+  ]}).sort({mvp_odds: 1})
     var bettype = [game.team_a, game.team_b, "draw", "Over " + game.ougoals + " goals", "Under " + game.ougoals + " goals", "Red Card"]
     if(game.started == false & game.completed == false){ 
       res.render('games/show', {
