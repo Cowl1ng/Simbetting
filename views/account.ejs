@@ -24,13 +24,13 @@
     <br>
 <% userBets.forEach(userBet => {  %>
   <% if(userBet.settled == false) { %>
-  <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> in <a style="color:#E3CF5B" href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. If it wins you will win: £ <%= userBet.winnings %></p>
+  <p style="font-size: x-large;" class="lead mb-3">£ <%= userBet.stake %> bet on <%= userBet.type %> in <a style="color:#E3CF5B" href="/games/<%= userBet.game %>"><%= userBet.game_title %></a>. Return: £ <%= userBet.winnings %></p>
   <% } %>
 <% }) %>
 <h2 style="text-align: center; font-size: xx-large; color:#E3CF5B">Fantasy Bets</h2>
 <% userFantasyBets.forEach(userFantasyBet => {  %>
   <% if(userFantasyBet.settled == false) { %>
-  <p class="lead mb-3">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> in <a style="color:#E3CF5B" href="/fantasy/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. If it wins you will win: £ <%= userFantasyBet.winnings %></p>
+  <p style="font-size: x-large;">£ <%= userFantasyBet.stake %> bet on <%= userFantasyBet.type %> in <a style="color:#E3CF5B" href="/fantasy/<%= userFantasyBet.game %>"><%= userFantasyBet.game_title %></a>. Return: £ <%= userFantasyBet.winnings %></p>
   <% } %>
 <% }) %>
 </div>
