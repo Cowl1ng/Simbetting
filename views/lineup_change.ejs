@@ -2,6 +2,9 @@
 <h2>Select your new Lineup, your selected formation is <%= formation%></h2>
 <br>
 <form action="/player/lineup" method="POST" class="form">
+  <div class="form-group">
+    <input type="text" class="form-control" name="formation" value="<%= formation %>" placeholder="<%= formation %>" hidden> </div>
+
 <div class="row">
   <div class="col-md-3">
 <ul>

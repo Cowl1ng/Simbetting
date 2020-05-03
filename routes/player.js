@@ -115,13 +115,12 @@ router.get('/lineup', ensureAuthenticated, async (req, res) => {
         forwards.push(player)
       }
     }
-
     res.render('./lineup', { 
       goalkeepers: goalkeepers,
       defenders: defenders,
       midfielders: midfielders,
       forwards: forwards,
-      players: players
+      players: players,
      })
   } catch(err) {
     console.log(err)
