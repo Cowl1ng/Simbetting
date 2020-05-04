@@ -72,7 +72,7 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
   try {
     const users = await User.findById(req.user.id)
     const fantasygames = await FantasyGame.findById(req.body.gameid)
-    if(req.body.bettype == fantasygames.team_a + " to win") {
+    if(req.body.bettype == fantasygames.team_a) {
       odds = fantasygames.odds_a
     } else if(req.body.bettype == fantasygames.team_b + " to win") {
       odds = fantasygames.odds_b
