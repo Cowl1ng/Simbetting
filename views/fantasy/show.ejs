@@ -29,10 +29,17 @@
 </div>
 <div class="col-md-4">
 <h2 style="color: #E3E3E3; padding-left: 10%">Place new bet</h2>
-  <form action="/fantasy/list" method="POST" class="form-inline">
+
+<!-- Limiting bets to £100 -->
+
+<form action="/fantasy/list" method="POST" class="form-inline">
     <div class="form-group">
       <label style="font-size: x-large; color: #E3E3E3" for="stake">Stake</label>
-      <input style="font-size: large;" type="number" step="0.01" min="1" max="<%= users.balance%>" class="form-control" name="stake"  placeholder="Stake">
+      <% if(users.balance > 100) { %>
+        <input style="font-size: large;" type="number" step="0.01" min="1" max="100" class="form-control" name="stake"  placeholder="Stake">
+      <% } else { %>
+        <input style="font-size: large;" type="number" step="0.01" min="1" max="<%= users.balance %>" class="form-control" name="stake"  placeholder="Stake">
+      <% } %>
     </div>
     <select class="form-control" name="bettype" style="background-color: #799DB1; color: #E3E3E3; font-size: large;">
       <% for(var i=0; i < bettype.length; i++) { %>
