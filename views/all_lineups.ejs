@@ -4,115 +4,395 @@
 <div class="row">
   <div class="col-md-2">
   <h4 style="color:#E3CF5B">Wedge</h4>
+    <% wedge.forEach(player => {  %>
+      <% if(player.position == "Goalkeeper"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
   <% wedge.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Forbes</h4>
-  <% forbes.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Tim</h4>
-  <% tim.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-    <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Bowden</h4>
-    <% bow.forEach(player => {  %>
+    <% if(player.position == "Defender"){ %>
       <% if(player.captain == true){ %>
-        <h6 style="color:#E3CF5B">Captain</h6>
+        <p> <%= player.name%> <mark>Captain</mark></p>
       <% } else if(player.vice_captain == true) { %>
-        <h6 style="color:#E3CF5B">Vice Captain</h6>
-      <% } %>
+        <p> <%= player.name%> <mark>Vice Captain</mark></p>
+      <% } else { %>
       <p> <%= player.name%> </p>
-    <% }) %>
+  <% }}}) %>
+<% wedge.forEach(player => {  %>
+  <% if(player.position == "Midfielder"){ %>
+    <% if(player.captain == true){ %>
+      <p> <%= player.name%> <mark>Captain</mark></p>
+    <% } else if(player.vice_captain == true) { %>
+      <p> <%= player.name%> <mark>Vice Captain</mark></p>
+    <% } else { %>
+    <p> <%= player.name%> </p>
+<% }}}) %>
+<% wedge.forEach(player => {  %>
+  <% if(player.position == "Forward"){ %>
+    <% if(player.captain == true){ %>
+      <p> <%= player.name%> <mark>Captain</mark></p>
+    <% } else if(player.vice_captain == true) { %>
+      <p> <%= player.name%> <mark>Vice Captain</mark></p>
+    <% } else { %>
+    <p> <%= player.name%> </p>
+<% }}}) %>
   </div>
   <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Kite</h4>
-  <% kite.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-</div>
+    <h4 style="color:#E3CF5B">Forbes</h4>
+      <% forbes.forEach(player => {  %>
+        <% if(player.position == "Goalkeeper"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+    <% forbes.forEach(player => {  %>
+      <% if(player.position == "Defender"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
+  <% forbes.forEach(player => {  %>
+    <% if(player.position == "Midfielder"){ %>
+      <% if(player.captain == true){ %>
+        <p> <%= player.name%> <mark>Captain</mark></p>
+      <% } else if(player.vice_captain == true) { %>
+        <p> <%= player.name%> <mark>Vice Captain</mark></p>
+      <% } else { %>
+      <p> <%= player.name%> </p>
+  <% }}}) %>
+  <% forbes.forEach(player => {  %>
+    <% if(player.position == "Forward"){ %>
+      <% if(player.captain == true){ %>
+        <p> <%= player.name%> <mark>Captain</mark></p>
+      <% } else if(player.vice_captain == true) { %>
+        <p> <%= player.name%> <mark>Vice Captain</mark></p>
+      <% } else { %>
+      <p> <%= player.name%> </p>
+  <% }}}) %>
+    </div>
+    <div class="col-md-2">
+      <h4 style="color:#E3CF5B">Tim</h4>
+        <% tim.forEach(player => {  %>
+          <% if(player.position == "Goalkeeper"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+      <% tim.forEach(player => {  %>
+        <% if(player.position == "Defender"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+    <% tim.forEach(player => {  %>
+      <% if(player.position == "Midfielder"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
+    <% tim.forEach(player => {  %>
+      <% if(player.position == "Forward"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
+      </div>
+      <div class="col-md-2">
+        <h4 style="color:#E3CF5B">Bowden</h4>
+          <% bow.forEach(player => {  %>
+            <% if(player.position == "Goalkeeper"){ %>
+              <% if(player.captain == true){ %>
+                <p> <%= player.name%> <mark>Captain</mark></p>
+              <% } else if(player.vice_captain == true) { %>
+                <p> <%= player.name%> <mark>Vice Captain</mark></p>
+              <% } else { %>
+              <p> <%= player.name%> </p>
+          <% }}}) %>
+        <% bow.forEach(player => {  %>
+          <% if(player.position == "Defender"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+      <% bow.forEach(player => {  %>
+        <% if(player.position == "Midfielder"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+      <% bow.forEach(player => {  %>
+        <% if(player.position == "Forward"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+        </div>
+        <div class="col-md-2">
+          <h4 style="color:#E3CF5B">Kite</h4>
+            <% kite.forEach(player => {  %>
+              <% if(player.position == "Goalkeeper"){ %>
+                <% if(player.captain == true){ %>
+                  <p> <%= player.name%> <mark>Captain</mark></p>
+                <% } else if(player.vice_captain == true) { %>
+                  <p> <%= player.name%> <mark>Vice Captain</mark></p>
+                <% } else { %>
+                <p> <%= player.name%> </p>
+            <% }}}) %>
+          <% kite.forEach(player => {  %>
+            <% if(player.position == "Defender"){ %>
+              <% if(player.captain == true){ %>
+                <p> <%= player.name%> <mark>Captain</mark></p>
+              <% } else if(player.vice_captain == true) { %>
+                <p> <%= player.name%> <mark>Vice Captain</mark></p>
+              <% } else { %>
+              <p> <%= player.name%> </p>
+          <% }}}) %>
+        <% kite.forEach(player => {  %>
+          <% if(player.position == "Midfielder"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+        <% kite.forEach(player => {  %>
+          <% if(player.position == "Forward"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+          </div>
 </div>
 <div class="row">
   <div class="col-md-2">
   <h4 style="color:#E3CF5B">Stark</h4>
+    <% stark.forEach(player => {  %>
+      <% if(player.position == "Goalkeeper"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
   <% stark.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Rog</h4>
-  <% rog.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Coulman</h4>
-  <% coulman.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-    <% }) %>
-  </div>
-  <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Niall</h4>
-    <% niall.forEach(player => {  %>
+    <% if(player.position == "Defender"){ %>
       <% if(player.captain == true){ %>
-        <h6 style="color:#E3CF5B">Captain</h6>
+        <p> <%= player.name%> <mark>Captain</mark></p>
       <% } else if(player.vice_captain == true) { %>
-        <h6 style="color:#E3CF5B">Vice Captain</h6>
-      <% } %>
+        <p> <%= player.name%> <mark>Vice Captain</mark></p>
+      <% } else { %>
       <p> <%= player.name%> </p>
-    <% }) %>
+  <% }}}) %>
+<% stark.forEach(player => {  %>
+  <% if(player.position == "Midfielder"){ %>
+    <% if(player.captain == true){ %>
+      <p> <%= player.name%> <mark>Captain</mark></p>
+    <% } else if(player.vice_captain == true) { %>
+      <p> <%= player.name%> <mark>Vice Captain</mark></p>
+    <% } else { %>
+    <p> <%= player.name%> </p>
+<% }}}) %>
+<% stark.forEach(player => {  %>
+  <% if(player.position == "Forward"){ %>
+    <% if(player.captain == true){ %>
+      <p> <%= player.name%> <mark>Captain</mark></p>
+    <% } else if(player.vice_captain == true) { %>
+      <p> <%= player.name%> <mark>Vice Captain</mark></p>
+    <% } else { %>
+    <p> <%= player.name%> </p>
+<% }}}) %>
   </div>
   <div class="col-md-2">
-  <h4 style="color:#E3CF5B">Cowling</h4>
-  <% cowling.forEach(player => {  %>
-    <% if(player.captain == true){ %>
-      <h6 style="color:#E3CF5B">Captain</h6>
-    <% } else if(player.vice_captain == true) { %>
-      <h6 style="color:#E3CF5B">Vice Captain</h6>
-    <% } %>
-    <p> <%= player.name%> </p>
-  <% }) %>
-</div>
+    <h4 style="color:#E3CF5B">Rog</h4>
+      <% rog.forEach(player => {  %>
+        <% if(player.position == "Goalkeeper"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+    <% rog.forEach(player => {  %>
+      <% if(player.position == "Defender"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
+  <% rog.forEach(player => {  %>
+    <% if(player.position == "Midfielder"){ %>
+      <% if(player.captain == true){ %>
+        <p> <%= player.name%> <mark>Captain</mark></p>
+      <% } else if(player.vice_captain == true) { %>
+        <p> <%= player.name%> <mark>Vice Captain</mark></p>
+      <% } else { %>
+      <p> <%= player.name%> </p>
+  <% }}}) %>
+  <% rog.forEach(player => {  %>
+    <% if(player.position == "Forward"){ %>
+      <% if(player.captain == true){ %>
+        <p> <%= player.name%> <mark>Captain</mark></p>
+      <% } else if(player.vice_captain == true) { %>
+        <p> <%= player.name%> <mark>Vice Captain</mark></p>
+      <% } else { %>
+      <p> <%= player.name%> </p>
+  <% }}}) %>
+    </div>
+    <div class="col-md-2">
+      <h4 style="color:#E3CF5B">Coulman</h4>
+        <% coulman.forEach(player => {  %>
+          <% if(player.position == "Goalkeeper"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+      <% coulman.forEach(player => {  %>
+        <% if(player.position == "Defender"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+    <% coulman.forEach(player => {  %>
+      <% if(player.position == "Midfielder"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
+    <% coulman.forEach(player => {  %>
+      <% if(player.position == "Forward"){ %>
+        <% if(player.captain == true){ %>
+          <p> <%= player.name%> <mark>Captain</mark></p>
+        <% } else if(player.vice_captain == true) { %>
+          <p> <%= player.name%> <mark>Vice Captain</mark></p>
+        <% } else { %>
+        <p> <%= player.name%> </p>
+    <% }}}) %>
+      </div>
+      <div class="col-md-2">
+        <h4 style="color:#E3CF5B">Niall</h4>
+          <% niall.forEach(player => {  %>
+            <% if(player.position == "Goalkeeper"){ %>
+              <% if(player.captain == true){ %>
+                <p> <%= player.name%> <mark>Captain</mark></p>
+              <% } else if(player.vice_captain == true) { %>
+                <p> <%= player.name%> <mark>Vice Captain</mark></p>
+              <% } else { %>
+              <p> <%= player.name%> </p>
+          <% }}}) %>
+        <% niall.forEach(player => {  %>
+          <% if(player.position == "Defender"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+      <% niall.forEach(player => {  %>
+        <% if(player.position == "Midfielder"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+      <% niall.forEach(player => {  %>
+        <% if(player.position == "Forward"){ %>
+          <% if(player.captain == true){ %>
+            <p> <%= player.name%> <mark>Captain</mark></p>
+          <% } else if(player.vice_captain == true) { %>
+            <p> <%= player.name%> <mark>Vice Captain</mark></p>
+          <% } else { %>
+          <p> <%= player.name%> </p>
+      <% }}}) %>
+        </div>
+        <div class="col-md-2">
+          <h4 style="color:#E3CF5B">Cowling</h4>
+            <% cowling.forEach(player => {  %>
+              <% if(player.position == "Goalkeeper"){ %>
+                <% if(player.captain == true){ %>
+                  <p> <%= player.name%> <mark>Captain</mark></p>
+                <% } else if(player.vice_captain == true) { %>
+                  <p> <%= player.name%> <mark>Vice Captain</mark></p>
+                <% } else { %>
+                <p> <%= player.name%> </p>
+            <% }}}) %>
+          <% cowling.forEach(player => {  %>
+            <% if(player.position == "Defender"){ %>
+              <% if(player.captain == true){ %>
+                <p> <%= player.name%> <mark>Captain</mark></p>
+              <% } else if(player.vice_captain == true) { %>
+                <p> <%= player.name%> <mark>Vice Captain</mark></p>
+              <% } else { %>
+              <p> <%= player.name%> </p>
+          <% }}}) %>
+        <% cowling.forEach(player => {  %>
+          <% if(player.position == "Midfielder"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+        <% cowling.forEach(player => {  %>
+          <% if(player.position == "Forward"){ %>
+            <% if(player.captain == true){ %>
+              <p> <%= player.name%> <mark>Captain</mark></p>
+            <% } else if(player.vice_captain == true) { %>
+              <p> <%= player.name%> <mark>Vice Captain</mark></p>
+            <% } else { %>
+            <p> <%= player.name%> </p>
+        <% }}}) %>
+          </div>
 </div>
 </div>
