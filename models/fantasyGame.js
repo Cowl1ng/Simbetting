@@ -99,7 +99,6 @@ FantasyGameSchema.post('save', async function(next) {
     user.balance = user.preFbalance
     await FantasyBet.find({ user: user.id }, (error, bets) => {
       for (bet of bets) {
-        console.log(bet)
         if (bet.settled == true & bet.win == true) {
           winnings += bet.winnings - bet.stake
         } else {
