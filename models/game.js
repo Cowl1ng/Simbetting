@@ -145,21 +145,6 @@ gameSchema.post('save', async function(next) {
         User.findOneAndUpdate({ _id: user.id} , { balance: user.balance, preFbalance: user.balance})
         .catch(err => console.log(err))
       })
-      user.balance = user.preFbalance
-      await FantasyBet.find({ user: user.id }, (error, bets) => {
-        for (bet of bets) {
-          if (bet.settled == true & bet.win == true) {
-            winnings += bet.winnings - bet.stake
-          } else {
-            winnings -= bet.stake
-          }
-          user.balance += winnings
-          winnings = 0
-          user.balance = user.balance.toFixed(2)
-        }
-        User.findOneAndUpdate({ _id: user.id} , { balance: user.balance})
-        .catch(err => console.log(err))
-      })
     }
   })
 } catch(err) {
