@@ -5,7 +5,7 @@ const FantasyGame = require('../models/fantasyGame')
 const { ensureAuthenticated } = require('../config/auth')
 const FantasyBet = require('../models/fantasyBet')
 const User = require('../models/User')
-gameWeek = 1
+gameWeek = 2
 
 
 // All games route
@@ -74,7 +74,7 @@ router.post('/list', ensureAuthenticated, async (req, res) =>{
     const fantasygames = await FantasyGame.findById(req.body.gameid)
     if(req.body.bettype == fantasygames.team_a) {
       odds = fantasygames.odds_a
-    } else if(req.body.bettype == fantasygames.team_b + " to win") {
+    } else if(req.body.bettype == fantasygames.team_b) {
       odds = fantasygames.odds_b
     } else if(req.body.bettype == "draw") {
       odds = fantasygames.odds_draw
