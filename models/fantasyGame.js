@@ -70,7 +70,7 @@ FantasyGameSchema.pre('remove', function(next) {
 FantasyGameSchema.post('save', async function(next) {
   try{
   await FantasyBet.find({ game: this.id }, (error, bets) => {
-    var bettype = [this.team_a + " to win", this.team_b + " to win", "draw"]
+    var bettype = [this.team_a, this.team_b, "draw"]
     for (const bet of bets) {
       if(this.completed == true) {
        if(bet.type == bettype[0] & this.team_a_points > this.team_b_points){
