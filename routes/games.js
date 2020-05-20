@@ -23,7 +23,7 @@ router.get('/list', ensureAuthenticated, async (req, res) => {
   
   try {
     const games = await Game.find({completed: false}).limit(10)
-    const completedGames = await Game.find({completed: true}).limit(10)
+    const completedGames = await Game.find({completed: true}).limit(10).sort({date: -1})
     res.render ('games/index_public', {
       games: games,
       completedGames: completedGames
@@ -138,6 +138,10 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     const game = await Game.findById(req.params.id)
     const users = await User.findById(req.user.id)
     const userBets = await Bet.find({user: users.id, game: game.id})
+    const winningBets = await Bet.find({game: game.id, win: true}).sort({winnings: -1}).limit(5)
+    const losingBets = await Bet.find({game: game.id, win: false}).sort({stake: -1}).limit(5)
+    console.log(winningBets)
+    console.log(losingBets)
     const correct_scores = await Score.find({game_id: req.params.id}).lean()
     if(correct_scores != "") {
     const score_object = correct_scores[0]
@@ -171,7 +175,9 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
       res.render('games/completed', {
         game: game,
         users: users,
-        userBets: userBets
+        userBets: userBets,
+        losingBets: losingBets,
+        winningBets: winningBets
       })
     }
 

@@ -3,7 +3,18 @@
 <h1 style="text-align: center; font-size: 60px; color: #E3CF5B" ><%= game.team_a %> <%= game.team_a_goals %> : <%= game.team_b_goals %> <%= game.team_b %></h1>
 <h2 style="text-align: center; color: #E3CF5B"> First Goalscorer: <%= game.fgoal_scorer %></h2>
 <h2 style="text-align: center; color: #E3CF5B"> MOTM: <%= game.mvp %></h2>
-<h2 style="color: #E3E3E3">Your bets</h2>
+<br>
+<div class="row">
+  <div class="col-md-4">
+  <h2 style="color: #E3E3E3">Your bets</h2>
+  </div>
+  <div class="col-md-4">
+    <h2 style="color: #E3E3E3">Biggest Wins</h2>
+  </div>
+  <div class="col-md-4">
+    <h2 style="color: #E3E3E3">Biggest Losses</h2>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-4">
 <% userBets.forEach(userBet => {  %>
@@ -14,5 +25,19 @@
   <% } %>  
 <% }) %>
 </div>
+ <!-- WINNING BETS -->
+ <div class="col-md-4">
+  <% winningBets.forEach(winningBet => {  %>
+    <h4 style="color: #E3E3E3">£ <%= winningBet.winnings %> on <%= winningBet.type %></h4> 
+    <h4>&emsp;</h4>
+  <% }) %>
+  </div>
+  <!-- LOSING BETS -->
+  <div class="col-md-4">
+    <% losingBets.forEach(losingBet => {  %>
+      <h4 style="color: #E3E3E3">£ <%= losingBet.stake %> on <%= losingBet.type %></h4>
+      <h4>&emsp;</h4>
+    <% }) %>
+  </div>
 </div>
   </div>
