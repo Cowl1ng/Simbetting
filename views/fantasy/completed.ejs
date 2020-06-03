@@ -1,31 +1,28 @@
 <%- include('../headers/_betting.ejs') %>
 <div class="jumbotron vertical-align big-color">
-<h1 style="text-align: center; font-size: 60px; color: #E3CF5B"><%= fantasygame.team_a %> <%= fantasygame.team_a_points %> : <%= fantasygame.team_b_points %> <%= fantasygame.team_b %></h1>
-<h2 style="color: #E3E3E3">Your bets</h2>
-<div class="row">
-  <!-- YOUR BETS -->
-  <div class="col-md-4">
-<% userBets.forEach(userBet => {  %>
-  <% if(userBet.win == true) { %>
-  <h4 style="color: #E3E3E3">£ <%= userBet.stake %> bet on <%= userBet.type %></h4><h4><mark style=" background-color:green">won: £ <%= userBet.winnings %></mark></h4>
-  <% } else { %>
-    <h4 style="color: #E3E3E3">£ <%= userBet.stake %> bet on <%= userBet.type %></h4><h4><mark style=" background-color:red">LOST</mark></h4>
-  <% } %>  
-<% }) %>
-</div>
- <!-- WINNING BETS -->
-<div class="col-md-4">
-  <h2>Winning Bets</h2>
-  <% winningBets.forEach(userBet => {  %>
-    <h4 style="color: #E3E3E3">£ <%= winningBets.stake %> bet on <%= winningBets.type %></h4><h4><mark style=" background-color:green">won: £ <%= winningBets.winnings %></mark></h4> 
-  <% }) %>
+  <h1 style="text-align: center; font-size: 60px; color: #e3cf5b;">
+    <%= fantasygame.team_a %> <%= fantasygame.team_a_points %> : <%=
+    fantasygame.team_b_points %> <%= fantasygame.team_b %>
+  </h1>
+  <h2 style="color: #e3e3e3;">Your bets</h2>
+  <div class="row">
+    <!-- YOUR BETS -->
+    <div class="col-md-4">
+      <% userBets.forEach(userBet => { %> <% if(userBet.win == true) { %>
+      <h4 style="color: #e3e3e3;">
+        £ <%= userBet.stake %> bet on <%= userBet.type %>
+      </h4>
+      <h4>
+        <mark style="background-color: green;"
+          >won: £ <%= userBet.winnings %></mark
+        >
+      </h4>
+      <% } else { %>
+      <h4 style="color: #e3e3e3;">
+        £ <%= userBet.stake %> bet on <%= userBet.type %>
+      </h4>
+      <h4><mark style="background-color: red;">LOST</mark></h4>
+      <% } %> <% }) %>
+    </div>
   </div>
-  <!-- LOSING BETS -->
-  <div class="col-md-4">
-    <h2>Losing Bets</h2>
-    <% losingBets.forEach(userBet => {  %>
-        <h4 style="color: #E3E3E3">£ <%= losingBets.stake %> bet on <%= losingBets.type %></h4><h4><mark style=" background-color:red">LOST</mark></h4>
-    <% }) %>
-  </div>
-</div>
 </div>
